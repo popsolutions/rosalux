@@ -2360,6 +2360,8 @@ span.chapeu{
   
 }
 
+/* Sdobke YouTube full width videos while maintaining aspect ratio */
+
 .wp-block-embed-youtube .wp-block-embed__wrapper{
 	position: relative;
 	width: 100%;
