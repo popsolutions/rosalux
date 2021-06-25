@@ -794,14 +794,20 @@ function pops_rosa_slider($atts){
     'order' => 'DESC',
     'post_status' => 'publish'
   );
-
+  //print_r($atts);
   if(isset($atts['categoria'])){
+  	//$cate = get_term_by( 'slug', $atts['categoria'], 'category' );
     $cat = get_category_by_slug($atts['categoria']);
     if ( $cat ) {
       $args['category'] = $cat->term_id;
     }
   }
 
+  if(isset($atts['cate-id'])){
+  	$args['cat'] = $atts['cate-id'];
+  }
+  
+  
   if(isset($atts['tipo'])){
     $args['post_type'] = $atts['tipo'];
   }
@@ -829,6 +835,10 @@ function pops_rosa_slider($atts){
   }
 
   $recent_posts = get_posts($args);
+  /*
+  $recent_posts = new WP_Query($args);
+  echo $recent_posts->request;
+  */
 
   $out = '';
   $class = isset($atts['item_class']) ? join(" ", explode(",",$atts['item_class'])) : '';
