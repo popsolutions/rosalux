@@ -533,8 +533,8 @@ function pops_main_content($atts){
 
     $out = '';
 
-    $categories = array();
-
+    //$categories = array();
+    /*
     if(isset($atts['especiais'])){
       $especiais = array_slice(explode(',',$atts['especiais']), 0, $quant);
 
@@ -558,48 +558,73 @@ function pops_main_content($atts){
           $categories[] =  (object) $cat_obj;
         }
       }
-    }
-
+    }*/
     if($quant > 0){
-      $args = array(
-        'numberposts' => $quant,
-        'orderby' => 'post_date',
-        'order' => 'DESC',
-        'post_type' => 'post',
-        'post_status' => 'publish'
-      );
 
-      if( isset( $atts['category'] ) ){
-        $cat = get_category_by_slug( $atts['category'] );
+		if( isset( $atts['category'] ) ){
+			$cat = get_category_by_slug( $atts['category'] );
+			if( $cat ){
+				$args['category__in'] = $cat->term_id;
+			}
+			$args['category_name'] = $atts['category'];
+		}
+		//print_r($cat);
+		//echo '<br>Cat: '.$cat->term_id;
+		if( isset( $atts['category__not_in'] ) ){
+			$cat_not_in = $atts['category__not_in'];
+			$slugs = explode( "," , $cat_not_in);
+			$cat_not_in_ids = array();
 
-        if( $cat ){
-          $args['category'] = $cat->term_id;
-        }
-      }
+			foreach ( $slugs as $slug ) {
+				$cat = get_category_by_slug($slug);
+				if($cat){
+					$cat_not_in_ids[] = $cat->term_id;
+				}
+			}
+			$args['category__not_in'] = $cat_not_in_ids;
+		}
+		$args = array(
+			'posts_per_page' => $quant,
+			'orderby' => 'post_date',
+			'order' => 'DESC',
+			'post_type' => array('livro','post'),
+			'post_status' => 'publish'
+		);
 
-      if( isset( $atts['category__not_in'] ) ){
-        $cat_not_in = $atts['category__not_in'];
-
-        $slugs = explode( "," , $cat_not_in);
-        $cat_not_in_ids = array();
-
-        foreach ( $slugs as $slug ) {
-          $cat = get_category_by_slug($slug);
-
-          if($cat){
-            $cat_not_in_ids[] = $cat->term_id;
-          }
-        }
-
-        $args['category__not_in'] = $cat_not_in_ids;
-      }
-
-      $posts = get_posts($args);
-      
-      $recent_posts = array_merge($posts, $categories);
-    }else{
-      $recent_posts = $categories;
-    }
+		switch($cat->term_id){
+			case 21053: // PT
+				$lang_id = 384;
+				break;
+			case 21055: // ES
+				$lang_id = 380;
+				break;
+		}
+		
+		$args['tax_query'] = array(
+			'relation' => 'OR',
+				array(
+		        'taxonomy' => 'category',
+		        'terms' => array($cat->term_id, 384),
+		        'field' => 'term_taxonomy_id',
+		        'operator' => 'IN',
+	    	),
+		);
+		/*
+		      echo '<pre>';
+		      print_r($args);
+		      echo '</pre>';
+		*/
+		$posts = get_posts($args);
+  
+		
+		//$testing = new WP_Query($args);
+		//echo $testing->request;
+  		
+  		$recent_posts = $posts;
+		//$recent_posts = array_merge($posts, $categories);
+	}else{
+		$recent_posts = $categories;
+	}
 
     if(count($recent_posts) > 0){
       if(isset($atts['id'])){
@@ -624,7 +649,7 @@ function pops_main_content($atts){
       foreach($recent_posts as $post){
         $class = $i == 0 ? 'active' : '';
 
-        if($post->post_type == "post"){
+        if($post->post_type == "post" || $post->post_type == "livro"){
           $title = $post->post_title;
           $link = get_permalink( $post->ID );
           $img = p_timthumb(715, 375, 'c', 100, 'v', null, null, null, $post->ID);
