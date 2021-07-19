@@ -564,10 +564,11 @@ function pops_main_content($atts){
 		if( isset( $atts['category'] ) ){
 			$cat = get_category_by_slug( $atts['category'] );
 			if( $cat ){
-				$args['category__in'] = $cat->term_id;
+				$args['cat'] = $cat->term_id;
 			}
-			$args['category_name'] = $atts['category'];
+			//$args['category_name'] = $atts['category'];
 		}
+		//slider1
 		//print_r($cat);
 		//echo '<br>Cat: '.$cat->term_id;
 		if( isset( $atts['category__not_in'] ) ){
@@ -601,10 +602,10 @@ function pops_main_content($atts){
 		}
 		
 		$args['tax_query'] = array(
-			'relation' => 'OR',
+			'relation' => 'AND',
 				array(
 		        'taxonomy' => 'category',
-		        'terms' => array($cat->term_id, 384),
+		        'terms' => array($cat->term_id, $lang_id),
 		        'field' => 'term_taxonomy_id',
 		        'operator' => 'IN',
 	    	),
@@ -814,12 +815,13 @@ function pops_rosa_slider($atts){
   }
   
   $args = array(
-    'numberposts' => $quant,
+    'posts_per_page' => $quant,
     'orderby' => 'post_date',
     'order' => 'DESC',
     'post_status' => 'publish'
   );
   //print_r($atts);
+  /*
   if(isset($atts['categoria'])){
   	//$cate = get_term_by( 'slug', $atts['categoria'], 'category' );
     $cat = get_category_by_slug($atts['categoria']);
@@ -827,12 +829,39 @@ function pops_rosa_slider($atts){
       $args['category'] = $cat->term_id;
     }
   }
+  */
+  if( isset( $atts['categoria'] ) ){
+	
+	$cat = get_category_by_slug( $atts['categoria'] );
+	if( $cat ){
+		//$args['cat'] = $cat->term_id;
+	}
+	//echo '<br>cat ('.$atts['categoria'].'): '.$cat->term_id;
+	switch($cat->term_id){
+			case 21323: // audios PT
+			case 25: // videos
+				$lang_id = 384;
+				break;
+			case 21431: // audios ES
+			case 98: // videos
+				$lang_id = 380;
+				break;
+		}
+		
+		$args['tax_query'] = array(
+			'relation' => 'AND',
+				array(
+		        'taxonomy' => 'category',
+		        'terms' => array($cat->term_id, $lang_id),
+		        'field' => 'term_taxonomy_id',
+		        'operator' => 'IN',
+	    	),
+		);
 
-  if(isset($atts['cate-id'])){
-  	$args['cat'] = $atts['cate-id'];
+	//$args['category_name'] = $atts['categoria'];
   }
-  
-  
+// slider2
+
   if(isset($atts['tipo'])){
     $args['post_type'] = $atts['tipo'];
   }
@@ -859,55 +888,61 @@ function pops_rosa_slider($atts){
     $args['category__not_in'] = $cat_not_in_ids;
   }
 
-  $recent_posts = get_posts($args);
-  /*
-  $recent_posts = new WP_Query($args);
-  echo $recent_posts->request;
-  */
-
   $out = '';
-  $class = isset($atts['item_class']) ? join(" ", explode(",",$atts['item_class'])) : '';
-
-  $outher_class = isset($atts['outher_class']) ? join(" ", explode(",",$atts['outher_class'])) : '';
-
-  $img_class = isset($atts['img_class']) ? join(" ", explode(",",$atts['img_class'])) : '';
-
-  $out .= '<div class="'.$outher_class.'"';
-
-  if(isset($atts['data-slick'])){
-    $out .= " data-slick='".$data_slick."'";
-  }
-
-  $out .= '>';
   
-  foreach($recent_posts as $post){
-    $link = get_permalink( $post->ID );
+  $slider_query = new WP_Query($args);
+  /*
+  echo '<br><pre>';
+  print_r($args);
+  echo '</pre>';
+  echo $slider_query->request;
+  */
+  if($slider_query->found_posts > 0) {
 
-    $post_tags = get_the_tags($post->ID);
-    if($post_tags){
-      $first_tag = $post_tags[0]->name;
-    }
+	  $recent_posts = get_posts($args);
+	    
+	  $class = isset($atts['item_class']) ? join(" ", explode(",",$atts['item_class'])) : '';
 
-    $out .= '<div class="'.$class.'">';
-    $out .= '<a href="'.$link.'">';
-    $out .= '<img class="'.$img_class.'" src="'.p_timthumb($atts['width'], $atts['height'], 'c', 100, 'v', null, null, null, $post->ID).'">';
-    $out .= '<div>';
-    $out .= (isset($atts['show_title']) and $atts['show_title'] == true) ? '<h2>'.$post->post_title.'</h2>' : '';
-    // $out .= (isset($atts['show_author']) and $atts['show_author'] == true) ? '<h3>'.$author.'</h3>' : '';
-    if(isset($atts['show_author']) and $atts['show_author'] == true){
-      if(isset($atts['tipo']) && $atts['tipo'] == "livro"){
-        $author = get_post_meta($post->ID, 'tp_livro_autor');
-      }else{
-        $author_id = $post->post_author;
-        $author = get_the_author_meta( 'user_nicename' , $author_id );
-      }
-      $out .= '<h2>'.$post->post_title.'</h2>';
-    }
-    $out .= '</div></a></div>'; 
-  }
-  
-  $out .= '</div>';
+	  $outher_class = isset($atts['outher_class']) ? join(" ", explode(",",$atts['outher_class'])) : '';
 
+	  $img_class = isset($atts['img_class']) ? join(" ", explode(",",$atts['img_class'])) : '';
+
+	  $out .= '<div class="'.$outher_class.'"';
+
+	  if(isset($atts['data-slick'])){
+	    $out .= " data-slick='".$data_slick."'";
+	  }
+
+	  $out .= '>';
+	  
+	  foreach($recent_posts as $post){
+	    $link = get_permalink( $post->ID );
+
+	    $post_tags = get_the_tags($post->ID);
+	    if($post_tags){
+	      $first_tag = $post_tags[0]->name;
+	    }
+
+	    $out .= '<div class="'.$class.'">';
+	    $out .= '<a href="'.$link.'">';
+	    $out .= '<img class="'.$img_class.'" src="'.p_timthumb($atts['width'], $atts['height'], 'c', 100, 'v', null, null, null, $post->ID).'">';
+	    $out .= '<div>';
+	    $out .= (isset($atts['show_title']) and $atts['show_title'] == true) ? '<h2>'.$post->post_title.'</h2>' : '';
+	    // $out .= (isset($atts['show_author']) and $atts['show_author'] == true) ? '<h3>'.$author.'</h3>' : '';
+	    if(isset($atts['show_author']) and $atts['show_author'] == true){
+	      if(isset($atts['tipo']) && $atts['tipo'] == "livro"){
+	        $author = get_post_meta($post->ID, 'tp_livro_autor');
+	      }else{
+	        $author_id = $post->post_author;
+	        $author = get_the_author_meta( 'user_nicename' , $author_id );
+	      }
+	      $out .= '<h2>'.$post->post_title.'</h2>';
+	    }
+	    $out .= '</div></a></div>'; 
+	  }
+	  
+	  $out .= '</div>';
+	}
   return $out;
 }
 add_shortcode('rosa-slider','pops_rosa_slider');
