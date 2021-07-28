@@ -588,7 +588,7 @@ function pops_main_content($atts){
 			'posts_per_page' => $quant,
 			'orderby' => 'post_date',
 			'order' => 'DESC',
-			'post_type' => array('livro','post'),
+			'post_type' => array('livro','post','evento'),
 			'post_status' => 'publish'
 		);
 
@@ -650,7 +650,7 @@ function pops_main_content($atts){
       foreach($recent_posts as $post){
         $class = $i == 0 ? 'active' : '';
 
-        if($post->post_type == "post" || $post->post_type == "livro"){
+        if($post->post_type == "post" || $post->post_type == "livro" || $post->post_type == "evento"){
           $title = $post->post_title;
           $link = get_permalink( $post->ID );
           $img = p_timthumb(715, 375, 'c', 100, 'v', null, null, null, $post->ID);
@@ -715,7 +715,8 @@ function pops_square_post($atts){
     'numberposts' =>  $atts['quant'],
     'orderby' => 'post_date',
     'order' => 'DESC',
-    'post_status' => 'publish'
+    'post_status' => 'publish',
+    'post_type' => array('livro','post')
   );
 
   if(isset($atts['rows'])){
@@ -730,11 +731,11 @@ function pops_square_post($atts){
       $args['category'] = intval($cat->term_id);
     }
   }
-
+/*
   if(isset($atts['tipo'])){
     $args['post_type'] = $tipo;
   }
-
+*/
   if(isset($atts['ids'])){
     $args['include'] = explode($atts['ids']);
   }
