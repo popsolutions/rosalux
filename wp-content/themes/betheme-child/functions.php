@@ -526,7 +526,7 @@ function custom_fields_metabox() {
 add_action( 'cmb2_admin_init', 'custom_fields_metabox' );
 
 /********************
- * BANNER HOME
+ * BANNER HOME - slider
  ********************/
 function pops_main_content($atts){
     $quant = isset($atts['quant']) ? $atts['quant'] : 3;
@@ -707,7 +707,7 @@ function format_banner_output(){
   return $out;
 }
 
-// Posts retangulares (home, 4 posts abaixo do banner no layout inicial)
+// Posts retangulares (home, 4 posts abaixo do banner no layout inicial) destaque
 function pops_square_post($atts){
   $cat_id = 0;
 
@@ -2083,3 +2083,20 @@ function tribe_past_reverse_chronological ($post_object) {
   return $post_object;
 }
 add_filter('the_posts', 'tribe_past_reverse_chronological', 100);
+
+
+/* Allow additional file type uploads */
+function pn_filter_mime_types( $mime_types ) {
+ 
+    //Add Additional Custom File Types
+    $mime_types['mobi'] = 'application/x-mobipocket-ebook'; // Adding .svg file type extension
+    $mime_types['epub'] = 'application/epub+zip'; // Adding .json file type extension
+     
+    //Remove Default File Types
+    //unset( $mime_types['3gp'] );  // Remove .3gp file type extension
+    //unset( $mime_types['3g2'] ); // Remove .3g2 file type extension
+     
+    //Return Filtered Mime Types
+    return $mime_types;
+}
+add_action( 'upload_mimes', 'pn_filter_mime_types' );
