@@ -1801,18 +1801,21 @@ formação em grupo...)') ,
 	echo '<div id="custom_checkout_field"><h2>' . __('Organizações') . '</h2>';
 	woocommerce_form_field('organizacao', array(
 		'type' => 'radio',
+		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
 		'class' => array(	'my-field-class form-row-wide') ,
 		'label' => __('Você faz parte de alguma organização da sociedade civil?') ,
 	) ,	$checkout->get_value('organizacao'));
 	woocommerce_form_field('escolas', array(
 		'type' => 'radio',
+		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
 		'class' => array(	'my-field-class form-row-wide') ,
 		'label' => __('Você faz parte de escolas ou bibliotecas comunitárias?') ,
 	), $checkout->get_value('escolas'));
 		woocommerce_form_field('jornalista', array(
 		'type' => 'radio',
+		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
 		'class' => array(	'my-field-class form-row-wide') ,
 		'label' => __('Você faz é jornalista?') ,
