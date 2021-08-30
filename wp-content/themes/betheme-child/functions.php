@@ -1820,7 +1820,7 @@ formação em grupo...)') ,
 	woocommerce_form_field('veiculo', array(
 		'type' => 'text',
 		'class' => array(	'my-field-class form-row-wide') ,
-		'label' => __('Qual veículo?') ,g
+		'label' => __('Qual veículo?') ,
 		'placeholder' => __('Veículo') ,
 	) ,	$checkout->get_value('veiculo'));
 	
