@@ -247,7 +247,6 @@ function wppop_ST4_get_FB_image($post_ID) {
 		return $post_thumbnail_img[0];
 	}
 }
-
 // Get post excerpt
 function wppop_ST4_get_FB_description($post) {
 	if ($post->post_excerpt) {
@@ -392,7 +391,6 @@ function custom_fields_metabox() {
 		'title'         => esc_html__( 'Dados do Livro', 'cmb2' ),
 	'object_types'  => array( 'livro', ), // Post type
 ) );
-
 	$cmb_livro->add_field( array(
 		'name'             => 'Autor do livro',
 		'desc'             => 'Autor(es) do Livro',
@@ -545,11 +543,8 @@ function pops_main_content($atts){
 			  echo '</pre>';
 		*/
 			  $posts = get_posts($args);
-
-
 		//$testing = new WP_Query($args);
 		//echo $testing->request;
-
 			  $recent_posts = $posts;
 		//$recent_posts = array_merge($posts, $categories);
 			}else{
@@ -584,7 +579,6 @@ function pops_main_content($atts){
 						$img = p_timthumb(715, 375, 'c', 100, 'v', null, $post->img);
 						$excerpt = $post->excerpt;
 					}
-
 					$out .= '<div class="carousel-item '.$class.'">';
 					$out .= '<a href="'.$link.'">';
 					$out .= '<img class="d-block w-100" src="'.$img.'">';
@@ -600,7 +594,6 @@ function pops_main_content($atts){
 				$out .= '<a class="carousel-control-prev" href="#'.$id.'" role="button" data-slide="prev">';
 				$out .= '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
 				$out .= '<span class="sr-only">Previous</span></a>';
-
 				$out .= '<a class="carousel-control-next" href="#'.$id.'" role="button" data-slide="next">';
 				$out .= '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
 				$out .= '<span class="sr-only">Next</span></a>';
@@ -707,7 +700,6 @@ function pops_rosa_slider($atts){
 	}else{
 		$quant = 4;
 	}
-
 	$args = array(
 		'posts_per_page' => $quant,
 		'orderby' => 'post_date',
@@ -725,7 +717,6 @@ function pops_rosa_slider($atts){
   }
   */
   if( isset( $atts['categoria'] ) ){
-
   	$cat = get_category_by_slug( $atts['categoria'] );
   	if( $cat ){
 		//$args['cat'] = $cat->term_id;
@@ -774,7 +765,6 @@ function pops_rosa_slider($atts){
 		$args['category__not_in'] = $cat_not_in_ids;
 	}
 	$out = '';
-
 	$slider_query = new WP_Query($args);
   /*
   echo '<br><pre>';
@@ -784,7 +774,6 @@ function pops_rosa_slider($atts){
   */
   if($slider_query->found_posts > 0) {
   	$recent_posts = get_posts($args);
-
   	$class = isset($atts['item_class']) ? join(" ", explode(",",$atts['item_class'])) : '';
   	$outher_class = isset($atts['outher_class']) ? join(" ", explode(",",$atts['outher_class'])) : '';
   	$img_class = isset($atts['img_class']) ? join(" ", explode(",",$atts['img_class'])) : '';
@@ -793,7 +782,6 @@ function pops_rosa_slider($atts){
   		$out .= " data-slick='".$data_slick."'";
   	}
   	$out .= '>';
-
   	foreach($recent_posts as $post){
   		$link = get_permalink( $post->ID );
   		$post_tags = get_the_tags($post->ID);
@@ -817,7 +805,6 @@ function pops_rosa_slider($atts){
   		}
   		$out .= '</div></a></div>'; 
   	}
-
   	$out .= '</div>';
   }
   return $out;
@@ -918,7 +905,6 @@ function wppop_map_script(){ ?>
 						}
 					}
 					];
-
 					setTimeout(function(){
 						$('.rosa-slider').slick(
 						{
@@ -953,7 +939,6 @@ function wppop_map_script(){ ?>
 					}, 1000);
 				});
 			});
-
 			var evt_list = <?php echo json_encode(pops_get_month_events()); ?>;
 			console.log(evt_list);
 			document.addEventListener('DOMContentLoaded', function() {
@@ -1172,11 +1157,9 @@ else if(is_page('sobre-nos')){ ?>
 					sendForm(search, 'AUDIOVISUAL', div, page, "#" + div + ' .results');
 					document.querySelector("#" + div + ' .results').scrollIntoView({ behavior: 'smooth' })
 				});
-
 			}
 			function sendForm(search, page, type = 'general', page_number = 1, div = "#results"){
 				var results = jQuery(div);
-
 				results.children().remove();
 				var search_filters = [];
 				jQuery('.tipo .item input[type="checkbox"]').each(function(i){
@@ -1315,11 +1298,9 @@ else if(is_page('sobre-nos')){ ?>
 					console.log(split_date);
 					console.log(date);
 					console.log(weekday);
-
 					let new_format = '<span class="tribe-event-date-start">';
 					new_format += '<h6>' + weekday +'</h6><span>' + date[0] + '</span>';
 					new_format += '<p>' + mes + '</p></span>';
-
 					var parent = jQuery(this).parent();
 					parent.children().remove();
 					parent.html(new_format);
@@ -1342,16 +1323,13 @@ else if(is_page('sobre-nos')){ ?>
 	}
 	elseif(is_category()){
 		$cat = get_queried_object();
-
 		if(substr($cat->slug, 0, 9) == "especial-"){ 
-
 			$livros = get_posts(array(
 				'category_name' => $cat->slug,
 				'post_type' => 'livro',
 				'posts_per_page'=>-1));
 			if($livros){
 				$count_slides = count($livros) >= 4 ? 4 : count($livros);
-
 				?>
 				<script>
 					jQuery(function($){
@@ -1453,7 +1431,6 @@ $search_term = $_POST['search'];
 $params = isset($_POST['params']) ? $_POST['params'] : array();
 $arr['params'] = $params;
 $args['post_status'] = 'publish';
-
 if(strtolower($_POST['page']) == "biblioteca"){
 	if($_POST['type'] == "first_letter"){
 		$query_ = "LOWER(post_title) LIKE LOWER(%s)";
@@ -1483,7 +1460,6 @@ if(strtolower($_POST['page']) == "biblioteca"){
 				$posts = $res;
 			}
 		}
-
 		if(in_array('titulo', $params) || count($params) == 0){
 			$_args = $args;
 			$_args['cc_search_post_title_only'] = $search_term;
@@ -1555,11 +1531,9 @@ else if(strtolower($_POST['page']) == "audiovisual"){
 			$_args['page'] = $_POST['page_number'];
 			$_args['paged'] = $_POST['page_number'];
 			$queries[] = $_args;
-
 			$res = format_results_midiateca($_args);
 			$_results = array_merge($res[0], $results);
 			$results = $_results;
-
 			$post_ids = array_merge($res[1], $_ids);
 			$_ids = $post_ids;
 			$count += $res[2];
@@ -1568,7 +1542,6 @@ else if(strtolower($_POST['page']) == "audiovisual"){
 			$count_audios += $res[2];
 		}
 	}
-
 	if($_POST['type'] == "videos" || $_POST['type'] == "both"){
 		$cat_videos = get_category_by_slug('videos');
 		$id_videos = $cat_videos->term_id;
@@ -1581,11 +1554,9 @@ else if(strtolower($_POST['page']) == "audiovisual"){
 			$_args['page'] = $_POST['page_number'];
 			$_args['paged'] = $_POST['page_number'];
 			$queries[] = $_args;
-
 			$res = format_results_midiateca($_args);
 			$_results = array_merge($res[0], $results);
 			$results = $_results;
-
 			$post_ids = array_merge($res[1], $_ids);
 			$_ids = $post_ids;
 			$count += $res[2];
@@ -1637,7 +1608,6 @@ else if(strtolower($_POST['page']) == "audiovisual"){
 	$arr['queries'] = $queries;
 	foreach ($posts as $post) {
 		$arr_post = (array) $post;
-
 		$results[] = $arr_post;
 	}
 }
@@ -1804,83 +1774,92 @@ function tribe_past_reverse_chronological ($post_object) {
 add_filter('the_posts', 'tribe_past_reverse_chronological', 100);
 /* Allow additional file type uploads */
 function pn_filter_mime_types( $mime_types ) {
-
 	//Add Additional Custom File Types
 	$mime_types['mobi'] = 'application/x-mobipocket-ebook'; // Adding .svg file type extension
 	$mime_types['epub'] = 'application/epub+zip'; // Adding .json file type extension
-
 	//Remove Default File Types
 	//unset( $mime_types['3gp'] );  // Remove .3gp file type extension
 	//unset( $mime_types['3g2'] ); // Remove .3g2 file type extension
-
 	//Return Filtered Mime Types
 	return $mime_types;
 }
 add_action( 'upload_mimes', 'pn_filter_mime_types' );
 
 //adding new fields to the checkout form
-
 add_action('woocommerce_after_order_notes', 'custom_checkout_field');
 function custom_checkout_field($checkout)
 {
 	woocommerce_form_field('interesse', array(
 		'type' => 'text',
-		'class' => array(
-			'my-field-class form-row-wide'
-		) ,
+		'required' => 'true',
+		'class' => array(	'my-field-class form-row-wide') ,
 		'label' => __('Qual seu interesse no tema do livro? (Conhecimento pessoal, acadêmico,
 formação em grupo...)') ,
 		'placeholder' => __('Seu interesse') ,
-	) ,
-	$checkout->get_value('interesse'));
+	) ,	$checkout->get_value('interesse'));
 
 	echo '<div id="custom_checkout_field"><h2>' . __('Organizações') . '</h2>';
-
 	woocommerce_form_field('organizacao', array(
 		'type' => 'radio',
-		'class' => array(
-			'my-field-class form-row-wide'
-		) ,
+		'required' => 'true',
+		'class' => array(	'my-field-class form-row-wide') ,
 		'label' => __('Você faz parte de alguma organização da sociedade civil?') ,
-	) ,
-	$checkout->get_value('organizacao'));
-
+	) ,	$checkout->get_value('organizacao'));
 	woocommerce_form_field('escolas', array(
 		'type' => 'radio',
-		'class' => array(
-			'my-field-class form-row-wide'
-		) ,
+		'required' => 'true',
+		'class' => array(	'my-field-class form-row-wide') ,
 		'label' => __('Você faz parte de escolas ou bibliotecas comunitárias?') ,
-	) ,
-	$checkout->get_value('escolas'));
-
+	), $checkout->get_value('escolas'));
 		woocommerce_form_field('jornalista', array(
 		'type' => 'radio',
-		'class' => array(
-			'my-field-class form-row-wide'
-		) ,
-		'label' => __('Você faz é jornalista? Sim Não') ,
-	) ,
-	$checkout->get_value('jornalista'));
-
+		'required' => 'true',
+		'class' => array(	'my-field-class form-row-wide') ,
+		'label' => __('Você faz é jornalista?') ,
+	) ,	$checkout->get_value('jornalista'));
 	woocommerce_form_field('veiculo', array(
 		'type' => 'text',
-		'class' => array(
-			'my-field-class form-row-wide'
-		) ,
-		'label' => __('Qual veículo?') ,
+		'class' => array(	'my-field-class form-row-wide') ,
+		'label' => __('Qual veículo?') ,g
 		'placeholder' => __('Veículo') ,
-	) ,
-	$checkout->get_value('veiculo'));
-
+	) ,	$checkout->get_value('veiculo'));
+	
 	echo '<p>O formulário deverá ser enviado para os e-mails:
 info.saopaulo@rosalux.org e aidee.sequeira@rosalux.org</p>
-
 <p>Cada indivíduo poderá solicitar apenas um exemplar de cada
 publicação.</p>
-
 <p>O site deve possibilitar a extração de uma planilha com os dados do
 formulário de forma a permitir identificar quem são as pessoas e as
 organizações as quais fazem parte. Ou possibilitar o acesso a esses
 dados no analytic.</p></div>';
+}
+
+/**
+ * 2. Process the checkout - We then need to validate the field. If someone does not fill out the field they will get an error message.
+ */
+
+add_action('woocommerce_checkout_process', 'my_custom_checkout_field_process');
+function my_custom_checkout_field_process() {
+    // Check if set, if its not set add an error.
+  if ( ! $_POST['interesse'] )
+        wc_add_notice( __( 'O campo ainda precisa ser preenchido: Seu interesse' ), 'error' );
+  if ( ! $_POST['organizacao'] )
+        wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de alguma organização da sociedade civil?' ), 'error' );
+	if ( ! $_POST['escolas'] )
+        wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de escolas ou bibliotecas comunitárias?' ), 'error' );
+  if ( ! $_POST['jornalista'] )
+        wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz é jornalista?' ), 'error' );
+}
+
+/**
+ * 3. Display field value on the order edit page.
+ */
+		
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
+function my_custom_checkout_field_display_admin_order_meta($order){
+  echo '<p><strong>'.__('Seu interesse').':</strong> ' . get_post_meta( $order->id, 'interesse', true ) . '</p>';
+	echo '<p><strong>'.__('Você faz parte de alguma organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'organizacao', true ) . '</p>';
+	echo '<p><strong>'.__('Você faz parte de escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'escolas', true ) . '</p>';
+	echo '<p><strong>'.__('Você faz é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
+	echo '<p><strong>'.__('Qual veículo?').':</strong> ' . get_post_meta( $order->id, 'veiculo', true ) . '</p>';
 }
