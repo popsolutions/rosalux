@@ -1443,7 +1443,7 @@ if(strtolower($_POST['page']) == "biblioteca"){
 	else if($_POST['type'] == 'general'){
 		$query_ = "post_title LIKE %s";
 		$str .= $wild . $wpdb->esc_like($search_term) . $wild;
-		$args['post_type'] = 'livro';
+		$args['post_type'] = 'products';
 		$meta_queries = array();
 		if(in_array('autor', $params) || count($params) == 0){
 			$_args = $args;
