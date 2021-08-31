@@ -281,7 +281,7 @@ if (!is_admin()) {
 function post_types_search( $query ) {
 	//if ( $query->is_main_query() && $query->is_search() && ! is_admin() ) {
 	if ( $query->is_search() && ! is_admin() ) {
-		$query->set( 'post_type', array( 'livro', 'livros', 'post', 'tribe_events' ) );
+		$query->set( 'post_type', array( 'product', 'post', 'tribe_events' ) );
 		$query->set( 'tax_query', '');
 /*		[tax_query] => Array
 				(
@@ -389,7 +389,7 @@ function custom_fields_metabox() {
 	$cmb_livro = new_cmb2_box( array(
 		'id'            => 'post_type_livro_metabox',
 		'title'         => esc_html__( 'Dados do Livro', 'cmb2' ),
-	'object_types'  => array( 'livro', ), // Post type
+	'object_types'  => array( 'product', ), // Post type
 ) );
 	$cmb_livro->add_field( array(
 		'name'             => 'Autor do livro',
@@ -795,7 +795,7 @@ function pops_rosa_slider($atts){
   		$out .= (isset($atts['show_title']) and $atts['show_title'] == true) ? '<h2>'.$post->post_title.'</h2>' : '';
 		// $out .= (isset($atts['show_author']) and $atts['show_author'] == true) ? '<h3>'.$author.'</h3>' : '';
   		if(isset($atts['show_author']) and $atts['show_author'] == true){
-  			if(isset($atts['tipo']) && $atts['tipo'] == "livro"){
+  			if(isset($atts['tipo']) && $atts['tipo'] == "product"){
   				$author = get_post_meta($post->ID, 'tp_livro_autor');
   			}else{
   				$author_id = $post->post_author;
@@ -1326,7 +1326,7 @@ else if(is_page('sobre-nos')){ ?>
 		if(substr($cat->slug, 0, 9) == "especial-"){ 
 			$livros = get_posts(array(
 				'category_name' => $cat->slug,
-				'post_type' => 'livro',
+				'post_type' => 'product',
 				'posts_per_page'=>-1));
 			if($livros){
 				$count_slides = count($livros) >= 4 ? 4 : count($livros);
@@ -1683,11 +1683,11 @@ function pops_get_month_events(){
 function cc_post_title_filter($where, &$wp_query) {
 	global $wpdb;
 	if ($search_term = $wp_query->get( 'cc_search_post_title_only' )){
-		$where .= ' AND '.  $wpdb->posts . '.post_type=\'livro\' AND ' . $wpdb->posts . '.post_title LIKE \'%' . $wpdb->esc_like( $search_term ) . '%\'';
+		$where .= ' AND '.  $wpdb->posts . '.post_type=\'product\' AND ' . $wpdb->posts . '.post_title LIKE \'%' . $wpdb->esc_like( $search_term ) . '%\'';
 	}
 	else{
 		if ( $search_term = $wp_query->get( 'cc_search_post_title' ) ) {
-			$where .= ' OR ('.  $wpdb->posts . '.post_type=\'livro\' AND ' . $wpdb->posts . '.post_title LIKE \'%' . $wpdb->esc_like( $search_term ) . '%\')';
+			$where .= ' OR ('.  $wpdb->posts . '.post_type=\'product\' AND ' . $wpdb->posts . '.post_title LIKE \'%' . $wpdb->esc_like( $search_term ) . '%\')';
 		}
 	}
 	return $where;
