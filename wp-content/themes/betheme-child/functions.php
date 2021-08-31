@@ -1435,7 +1435,7 @@ if(strtolower($_POST['page']) == "biblioteca"){
 	if($_POST['type'] == "first_letter"){
 		$query_ = "LOWER(post_title) LIKE LOWER(%s)";
 		$str .= $wpdb->esc_like($search_term) . $wild;
-		$query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts WHERE $query_ AND post_type='livro' ORDER BY post_title", $str);
+		$query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts WHERE $query_ AND post_type='product' ORDER BY post_title", $str);
 		$new_query = $wpdb->remove_placeholder_escape($query);
 		$posts = $wpdb->get_results($new_query);
 		$arr['posts'] = $posts;
@@ -1443,7 +1443,7 @@ if(strtolower($_POST['page']) == "biblioteca"){
 	else if($_POST['type'] == 'general'){
 		$query_ = "post_title LIKE %s";
 		$str .= $wild . $wpdb->esc_like($search_term) . $wild;
-		$args['post_type'] = 'products';
+		$args['post_type'] = 'product';
 		$meta_queries = array();
 		if(in_array('autor', $params) || count($params) == 0){
 			$_args = $args;
