@@ -162,12 +162,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 						echo $echo_file;
 						?>
 						<p class="cart">
-							<a class="button button_theme button_js" href="?add-to-cart=<?php echo $id;?>" rel="nofollow"><span class="button_icon"><i class="icon-forward"></i></span><span class="button_label">solicitar a entrega deste livro</span></a>
+							<a class="button float-right btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow"><span class="button_label">SOLICITAR ENVIO</span><span class="button_icon"><i class="icon-forward"></i></span></a>
 						</p>
 					</div>
 				</div>
 			</div>
-			
+
 		<!-- <?php //if( mfn_opts_get( 'share' ) && ( get_post_meta( get_the_ID(), 'mfn-post-template', true ) == 'intro' ) ): ?>
 			<div class="section section-post-intro-share">
 				<div class="section_wrapper clearfix">
@@ -187,15 +187,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 			<?php //endif; ?> -->
 		</div>
-		
+
 		<?php if( mfn_opts_get( 'blog-comments' ) ): ?>
 			<div class="section section-post-comments">
 				<div class="section_wrapper clearfix">
-					
+
 					<div class="column one comments">
 						<?php comments_template( '', true ); ?>
 					</div>
-					
+
 				</div>
 			</div>
 		<?php endif; ?>
