@@ -162,7 +162,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						echo $echo_file;
 						?>
 						<p class="cart">
-							<a class="button float-right btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow"><span class="button_label">SOLICITAR ENVIO</span><span class="button_icon"><i class="icon-forward"></i></span></a>
+							<a class="button float-right btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow">SOLICITAR ENVIO <i class="icon-forward"></i></a>
 						</p>
 					</div>
 				</div>
