@@ -23,6 +23,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <?php
+function my_plugin_body_class($classes) {
+    $classes[] = 'single-livro';
+    return $classes;
+}
+
+add_filter('body_class', 'my_plugin_body_class');
 	/**
 	 * woocommerce_before_single_product hook.
 	 *
