@@ -144,27 +144,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="post-wrapper-content single_content">
 
-    <div class="post_content">
-        <div class="d-flex mb-4">
-          <?php 
-          if($thumb){ 
-          ?>
-            <div class="book-thumb">
-              <img src="<?php echo $thumb; ?>">
-              <img src="<?php echo $thumb2; ?>" style="display: none">
-            </div>
-          <?php  
-          }
-          ?>
-          <div class="pl-3 book-desc">
-            <?php 
-              the_content(); 
-              echo $echo_file;
-            ?>
-          </div>
-        </div>
-    </div>
-    
+			<div class="post_content">
+				<div class="d-flex mb-4">
+					<?php 
+					if($thumb){ 
+						?>
+						<div class="book-thumb">
+							<img src="<?php echo $thumb; ?>">
+							<img src="<?php echo $thumb2; ?>" style="display: none">
+						</div>
+						<?php  
+					}
+					?>
+					<div class="pl-3 book-desc">
+						<?php 
+						the_content(); 
+						echo $echo_file;
+						?>
+						<p class="cart">
+							<a class="button button_theme button_js" href="?add-to-cart=<?php echo $id;?>" rel="nofollow"><span class="button_icon"><i class="icon-forward"></i></span><span class="button_label">solicitar a entrega deste livro</span></a>
+						</p>
+					</div>
+				</div>
+			</div>
+			
 		<!-- <?php //if( mfn_opts_get( 'share' ) && ( get_post_meta( get_the_ID(), 'mfn-post-template', true ) == 'intro' ) ): ?>
 			<div class="section section-post-intro-share">
 				<div class="section_wrapper clearfix">
@@ -182,29 +185,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 				</div>
 			</div>
-		<?php //endif; ?> -->
-	</div>
-	
-	<?php if( mfn_opts_get( 'blog-comments' ) ): ?>
-		<div class="section section-post-comments">
-			<div class="section_wrapper clearfix">
-			
-				<div class="column one comments">
-					<?php comments_template( '', true ); ?>
-				</div>
-				
-			</div>
+			<?php //endif; ?> -->
 		</div>
-	<?php endif; ?>
-<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+		
+		<?php if( mfn_opts_get( 'blog-comments' ) ): ?>
+			<div class="section section-post-comments">
+				<div class="section_wrapper clearfix">
+					
+					<div class="column one comments">
+						<?php comments_template( '', true ); ?>
+					</div>
+					
+				</div>
+			</div>
+		<?php endif; ?>
 
-<p class="cart">
-	<a class="button button_theme button_js" href="<?php echo esc_url( $product_url ); ?>" rel="nofollow"><span class="button_icon"><i class="icon-forward"></i></span><span class="button_label"><?php echo esc_html( $button_text ); ?></span></a>
-</p>
-
-<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
-
-	<?php 
+		<?php 
 		woocommerce_upsell_display();
 		if( mfn_opts_get( 'shop-related' ) ) woocommerce_output_related_products(); 
 		?>
