@@ -1866,3 +1866,16 @@ function my_custom_checkout_field_display_admin_order_meta($order){
 	echo '<p><strong>'.__('Você faz é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
 	echo '<p><strong>'.__('Qual veículo?').':</strong> ' . get_post_meta( $order->id, 'veiculo', true ) . '</p>';
 }
+
+
+
+
+
+function my_plugin_body_class($classes) {
+    if ( is_product() ) {
+    	$classes[] = 'single-livro';
+    	return $classes;
+    }
+}
+
+add_filter('body_class', 'my_plugin_body_class');
