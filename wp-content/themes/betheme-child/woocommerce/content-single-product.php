@@ -110,9 +110,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 	
 
 
-	<div class="product_wrapper clearfix">
-		<div class="column">
-			<?php do_action( 'woocommerce_template_single_title' );?>
+	<div class="post-wrapper-content">
+		<div class="post-header">
+		<?php
+            $id = get_the_ID();
+            $author = get_post_meta($id, 'tp_livro_autor');
+            $echo_author = $author ? '<h3>'.$author[0].'</h3>' : '';
+
+            $editora = get_post_meta($id, 'tp_livro_editora');
+            $echo_editora = $editora ? '<h4> - '.$editora[0].'</h4>' : '';
+
+            $ano = get_post_meta($id, 'tp_livro_ano');
+            $echo_ano = $ano ? '<h4>'.$ano[0].'</h4>' : '';
+
+            $file = get_post_meta($id, 'tp_livro_file');
+            $echo_file = $file ? '<a class="button float-right btn-sm p-2 px-4" href="'.$file[0].'" target="_blank">BAIXAR</a>' : '';
+            
+            $thumb = get_the_post_thumbnail_url($id, 'full');
+
+            $thumb2 = get_the_post_thumbnail_url($id, array(395, 222));
+
+            
+          ?>
+          <?php //echo $echo_author; ?>
+          <h1><?php the_title(); ?></h1>
+          <?php echo $echo_ano.$echo_editora; ?>
+      </div>
+  </div>
+		<?php
+			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+
+			 do_action( 'woocommerce_template_single_title' );?>
 		</div>
 
 		<div class="column one-second product_image_wrapper">
