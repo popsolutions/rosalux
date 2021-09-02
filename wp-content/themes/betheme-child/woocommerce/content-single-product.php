@@ -196,6 +196,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 	<?php endif; ?>
+<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+
+<p class="cart">
+	<a class="button button_theme button_js" href="<?php echo esc_url( $product_url ); ?>" rel="nofollow"><span class="button_icon"><i class="icon-forward"></i></span><span class="button_label"><?php echo esc_html( $button_text ); ?></span></a>
+</p>
+
+<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+
+	<?php 
+		woocommerce_upsell_display();
+		if( mfn_opts_get( 'shop-related' ) ) woocommerce_output_related_products(); 
+		?>
 
 
-	
+		<?php if( version_compare( WC_VERSION, '2.7', '<' ) ): ?>
+			<meta itemprop="url" content="<?php the_permalink(); ?>" />
+		<?php endif; ?>
+
+
+	</div><!-- #product-<?php the_ID(); ?> -->
+
+	<?php do_action( 'woocommerce_after_single_product' ); ?>
