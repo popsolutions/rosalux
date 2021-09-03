@@ -1894,9 +1894,3 @@ add_filter( 'woocommerce_get_price_html', 'QuadLayers_remove_price');
 function QuadLayers_remove_price($price){     
      return ;
 }
-
-add_filter( 'woocommerce_after_shop_loop_item_title', 'remove_woocommerce_loop_price', 2 ); 
-function remove_woocommerce_loop_price() { 
-   if( ! is_shop() ) return; // Hide prices only on shop page 
-remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 ); 
-}
