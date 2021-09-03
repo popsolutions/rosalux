@@ -1879,3 +1879,24 @@ function my_plugin_body_class($classes) {
 }
 
 add_filter('body_class', 'my_plugin_body_class');
+
+/* show cart if not empty */
+add_filter( 'generate_woocommerce_menu_item_location', 'tu_hide_empty_cart_icon' );
+function tu_hide_empty_cart_icon( $location ) {
+    if ( class_exists( 'WooCommerce' ) && sizeof( WC()->cart->get_cart() ) > 0 ) {
+        return $location;
+    }
+
+    return 'none';
+}
+
+add_filter( 'woocommerce_get_price_html', 'QuadLayers_remove_price');
+function QuadLayers_remove_price($price){     
+     return ;
+}
+
+add_filter( 'woocommerce_after_shop_loop_item_title', 'remove_woocommerce_loop_price', 2 ); 
+function remove_woocommerce_loop_price() { 
+   if( ! is_shop() ) return; // Hide prices only on shop page 
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 ); 
+}
