@@ -2376,4 +2376,7 @@ span.chapeu{
 	top: 0;
 }
 
-.cart_item .product-remove .button_icon{color: black}
+.cart_item .product-remove .button_icon, .wc-proceed-to-checkout a{color: red}
+.product-price, .product-subtotal, .cart-subtotal, .order-total {display: none;}
+.col-2{max-width: 50%;}
+.woocommerce-input-wrapper .input-radio, .woocommerce-form__input woocommerce-form__input-checkbox {width: auto; margin-right: 12px; float: left;}
