@@ -2376,7 +2376,7 @@ span.chapeu{
 	top: 0;
 }
 
-.cart_item .product-remove .button_icon, .woocommerce #respond input#submit.alt{color: red;}	
+.cart_item .product-remove .button_icon, .woocommerce .checkout-button{color: red;}
 .product-price, .product-subtotal, .cart-subtotal, .order-total, .woocommerce-cart-form__contents .actions, .product-quantity {display: none;}
 .woocommerce-input-wrapper .input-radio, .woocommerce-form__input .woocommerce-form__input-checkbox {width: 10px; margin-right: 12px; float: left;}
 
