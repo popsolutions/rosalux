@@ -1890,13 +1890,20 @@ function tu_hide_empty_cart_icon( $location ) {
     return 'none';
 }
 
-add_filter( 'woocommerce_get_price_html', 'QuadLayers_remove_price');
-function QuadLayers_remove_price($price){     
+add_filter( 'woocommerce_get_price_html', 'pop_dobke_remove_price');
+function pop_dobke_remove_price($price){     
      return ;
 }
 
-add_filter( 'woocommerce_order_button_text', 'misha_custom_button_text' );
+add_filter( 'woocommerce_order_button_text', 'pop_dobke_custom_button_text' );
  
-function misha_custom_button_text( $button_text ) {
+function pop_dobke_custom_button_text( $button_text ) {
    return 'Finalizar pedido'; // new text is here 
+}
+
+function woocommerce_button_proceed_to_checkout() { ?>
+ <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward">
+ <?php esc_html_e( 'Fazer pedido', 'woocommerce' ); ?>
+ </a>
+ <?php
 }

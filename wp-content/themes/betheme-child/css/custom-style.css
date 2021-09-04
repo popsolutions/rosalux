@@ -2414,3 +2414,5 @@ span.chapeu{
 #customer_details p, #customer_details span, #customer_details .input-text, #customer_details .input-text, #customer_details textarea {
     width: 100%;
 }
+.woocommerce #payment #place_order, .woocommerce-page #payment #place_order{border: 1px solid}
+.wc-proceed-to-checkout a{color: red;}
