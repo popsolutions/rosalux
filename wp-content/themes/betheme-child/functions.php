@@ -1911,11 +1911,17 @@ function woocommerce_button_proceed_to_checkout() { ?>
 /**
  * When an item is added to the cart, remove other products
  */
+function pop_dobke_change_add_success_text(){
+	$message = 'Você só pode solicitar 1 livro. O livro que eu havia selecionado foi substituído. <a href="/cart" class="wc-forward">Fazer pedido</a>';
+	return $message;
+}
 function pop_dobke_empty_cart( $valid, $product_id, $quantity ) {
 
     if( ! empty ( WC()->cart->get_cart() ) && $valid ){
         WC()->cart->empty_cart();
-        wc_add_notice( 'Você só pode solicitar 1 livro. O livro que eu havia selecionado foi substituído. <a href="/cart">Fazer pedido</a>', 'success' );
+        add_filter('wc_add_to_cart_message_html','pop_dobke_change_add_success_text');
+        //wc_add_notice( 'Você só pode solicitar 1 livro. O livro que eu havia selecionado foi substituído. <a href="/cart" class="wc-forward">Fazer pedido</a>', 'success' );
+
     }
 
     return $valid;
