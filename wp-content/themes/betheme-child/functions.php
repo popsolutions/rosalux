@@ -1907,3 +1907,18 @@ function woocommerce_button_proceed_to_checkout() { ?>
  </a>
  <?php
 }
+
+/**
+ * When an item is added to the cart, remove other products
+ */
+function so_27030769_maybe_empty_cart( $valid, $product_id, $quantity ) {
+
+    if( ! empty ( WC()->cart->get_cart() ) && $valid ){
+        WC()->cart->empty_cart();
+        wc_add_notice( 'Você pode solicitar apenas 1 livro', 'error' );
+    }
+
+    return $valid;
+
+}
+add_filter( 'woocommerce_add_to_cart_validation', 'so_27030769_maybe_empty_cart', 10, 3 );
