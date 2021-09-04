@@ -2379,3 +2379,38 @@ span.chapeu{
 .cart_item .product-remove .button_icon, .woocommerce #respond input#submit.alt{color: red}
 .product-price, .product-subtotal, .cart-subtotal, .order-total, .woocommerce-cart-form__contents .actions {display: none;}
 .woocommerce-input-wrapper .input-radio, .woocommerce-form__input .woocommerce-form__input-checkbox {width: 10px; margin-right: 12px; float: left;}
+
+/* Custom CSS */
+.crp-list-item .crp-list-item-image img{
+    width: 220px;
+}
+.slick-slide{
+    padding: 0 10px;
+}
+.image_frame .image_wrapper, #results .result .picture img{
+   height: 230px;
+}
+.column_blog .entry-title .chapeu, span.chapeu{
+   font-family: Linotype Univers;
+   font-weight: 330;
+}
+@media only screen and (max-width: 630px) {
+   .custom-related .crp-list-item.crp-list-item-has-image{
+       flex-direction: column;
+       margin-bottom: 20px;
+       padding-bottom: 20px;
+       border-bottom: 1px solid #eee;
+   }
+}
+.post-header h1{
+   font-size:24px;
+}
+/* Add working columns to woocommerce */
+.woocommerce .col2-set .col-1, .woocommerce-page .col2-set .col-1,
+.woocommerce .col2-set .col-2, .woocommerce-page .col2-set .col-2{
+/*  width: 100% !important;*/
+  max-width: none;
+}
+#customer_details p, #customer_details span, #customer_details .input-text, #customer_details .input-text, #customer_details textarea {
+    width: 100%;
+}
