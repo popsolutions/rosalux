@@ -1894,3 +1894,9 @@ add_filter( 'woocommerce_get_price_html', 'QuadLayers_remove_price');
 function QuadLayers_remove_price($price){     
      return ;
 }
+
+add_filter( 'woocommerce_order_button_text', 'misha_custom_button_text' );
+ 
+function misha_custom_button_text( $button_text ) {
+   return 'Finalizar pedido'; // new text is here 
+}
