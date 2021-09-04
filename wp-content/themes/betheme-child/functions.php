@@ -1911,7 +1911,7 @@ function woocommerce_button_proceed_to_checkout() { ?>
 /**
  * When an item is added to the cart, remove other products
  */
-function pop_dobke_maybe_empty_cart( $valid, $product_id, $quantity ) {
+function pop_dobke_empty_cart( $valid, $product_id, $quantity ) {
 
     if( ! empty ( WC()->cart->get_cart() ) && $valid ){
         WC()->cart->empty_cart();
