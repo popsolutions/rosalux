@@ -1911,7 +1911,7 @@ function woocommerce_button_proceed_to_checkout() { ?>
 /**
  * When an item is added to the cart, remove other products
  */
-function so_27030769_maybe_empty_cart( $valid, $product_id, $quantity ) {
+function pop_dobke_maybe_empty_cart( $valid, $product_id, $quantity ) {
 
     if( ! empty ( WC()->cart->get_cart() ) && $valid ){
         WC()->cart->empty_cart();
@@ -1921,4 +1921,4 @@ function so_27030769_maybe_empty_cart( $valid, $product_id, $quantity ) {
     return $valid;
 
 }
-add_filter( 'woocommerce_add_to_cart_validation', 'so_27030769_maybe_empty_cart', 10, 3 );
+add_filter( 'woocommerce_add_to_cart_validation', 'pop_dobke_empty_cart', 10, 3 );
