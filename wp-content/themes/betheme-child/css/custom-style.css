@@ -2415,4 +2415,4 @@ span.chapeu{
     width: 100%;
 }
 .woocommerce #payment #place_order, .woocommerce-page #payment #place_order{border: 1px solid}
-.wc-proceed-to-checkout a{color: red;}
+.wc-proceed-to-checkout a{color: #ff2600 !important;}
