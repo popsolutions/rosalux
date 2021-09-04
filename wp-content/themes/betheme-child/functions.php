@@ -1915,7 +1915,7 @@ function so_27030769_maybe_empty_cart( $valid, $product_id, $quantity ) {
 
     if( ! empty ( WC()->cart->get_cart() ) && $valid ){
         WC()->cart->empty_cart();
-        wc_add_notice( 'Você pode solicitar apenas 1 livro', 'error' );
+        wc_add_notice( 'Você só pode solicitar 1 livro. O livro que eu havia selecionado foi substituído. <a href="/cart">Fazer pedido</a>', 'success' );
     }
 
     return $valid;
