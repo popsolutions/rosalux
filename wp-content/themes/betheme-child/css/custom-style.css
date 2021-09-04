@@ -2376,7 +2376,6 @@ span.chapeu{
 	top: 0;
 }
 
-.cart_item .product-remove .button_icon, .wc-proceed-to-checkout a{color: red}
-.product-price, .product-subtotal, .cart-subtotal, .order-total {display: none;}
-.col-2{max-width: 50%;}
-.woocommerce-input-wrapper .input-radio, .woocommerce-form__input woocommerce-form__input-checkbox {width: auto; margin-right: 12px; float: left;}
+.cart_item .product-remove .button_icon, .woocommerce #respond input#submit.alt{color: red}
+.product-price, .product-subtotal, .cart-subtotal, .order-total, .woocommerce-cart-form__contents .actions {display: none;}
+.woocommerce-input-wrapper .input-radio, .woocommerce-form__input .woocommerce-form__input-checkbox {width: auto; margin-right: 12px; float: left;}
