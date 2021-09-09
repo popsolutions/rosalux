@@ -1826,15 +1826,6 @@ formação em grupo...)') ,
 		'label' => __('Qual veículo?') ,
 		'placeholder' => __('Veículo') ,
 	) ,	$checkout->get_value('veiculo'));
-	
-	echo '<p>O formulário deverá ser enviado para os e-mails:
-info.saopaulo@rosalux.org e aidee.sequeira@rosalux.org</p>
-<p>Cada indivíduo poderá solicitar apenas um exemplar de cada
-publicação.</p>
-<p>O site deve possibilitar a extração de uma planilha com os dados do
-formulário de forma a permitir identificar quem são as pessoas e as
-organizações as quais fazem parte. Ou possibilitar o acesso a esses
-dados no analytic.</p></div>';
 }
 
 /**
