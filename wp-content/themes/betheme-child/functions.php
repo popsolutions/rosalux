@@ -1826,6 +1826,8 @@ formação em grupo...)') ,
 		'label' => __('Qual veículo?') ,
 		'placeholder' => __('Veículo') ,
 	) ,	$checkout->get_value('veiculo'));
+	
+	echo '</div>';
 }
 
 /**
