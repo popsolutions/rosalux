@@ -1863,7 +1863,7 @@ function my_custom_checkout_field_display_admin_order_meta($order){
   echo '<p><strong>'.__('Seu interesse').':</strong> ' . get_post_meta( $order->id, 'interesse', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de alguma organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'organizacao', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'escolas', true ) . '</p>';
-	echo '<p><strong>'.__('Você faz é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
+	echo '<p><strong>'.__('Você é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
 	echo '<p><strong>'.__('Qual veículo?').':</strong> ' . get_post_meta( $order->id, 'veiculo', true ) . '</p>';
 }
 
