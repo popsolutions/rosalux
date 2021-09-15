@@ -155,15 +155,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 						<?php  
 					}
+					
 					?>
 					<div class="pl-3 book-desc">
 						<?php 
 						the_content(); 
 						echo $echo_file;
 						?>
-						<p class="cart">
-							<a class="button btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow">SOLICITAR ENVIO <i class="icon-forward"></i></a>
-						</p>
+						<?php
+						global $product;
+    				if ( $product->managing_stock() && $product->is_in_stock() && $product->get_stock_quantity() > 0 ){
+    					?>
+    					<p class="cart">
+    						<a class="button btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow">SOLICITAR LIVRO <i class="icon-forward"></i></a>
+							</p>
+						<?php }?>
 					</div>
 				</div>
 			</div>
