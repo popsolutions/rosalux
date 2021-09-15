@@ -1409,7 +1409,6 @@ function format_results_midiateca($_args){
 			$post['link'] = get_permalink();
 			$post['date'] = get_the_date();
 			$product = wc_get_product( $id );
-			$post['stock'] = $product->get_total_stock();
 			$post['chapeu'] = $chapeu ? $chapeu[0] : '';
 			$res[0][] = $post;
 			$res[1][] = $id;
@@ -1499,8 +1498,10 @@ if(strtolower($_POST['page']) == "biblioteca"){
 	$fields = array('tp_livro_ano', 'tp_livro_autor', 'tp_livro_editora', 'tp_livro_file'); //'tp_livro_formato'
 	foreach ($posts as $post) {
 		$arr_post = (array) $post;
+		$product = wc_get_product( $post->ID );
 		$arr_post['thumb'] = get_the_post_thumbnail_url($post->ID);
 		$arr_post['permalink'] = get_permalink($post->ID);
+		$arr_post['stock'] = $product->get_total_stock();
 		foreach($fields as $f){
 			$meta = get_post_meta(intval($post->ID), $f);
 			if($meta){
