@@ -1401,7 +1401,6 @@ function format_results_midiateca($_args){
 					$cats[] = $category->name;
 				}
 			}
-			global $product;
 			$chapeu = get_post_meta($id, 'chapeu');
 			$post['categories'] = $cats;
 			$post['title'] = get_the_title();
@@ -1409,7 +1408,8 @@ function format_results_midiateca($_args){
 			$post['excerpt'] = get_the_excerpt($id);
 			$post['link'] = get_permalink();
 			$post['date'] = get_the_date();
-			$post['stock'] = $product->get_stock_quantity();
+			$product = wc_get_product( get_the_ID() ) );
+			$post['stock'] = $product->get_total_stock();
 			$post['chapeu'] = $chapeu ? $chapeu[0] : '';
 			$res[0][] = $post;
 			$res[1][] = $id;
