@@ -1408,7 +1408,7 @@ function format_results_midiateca($_args){
 			$post['excerpt'] = get_the_excerpt($id);
 			$post['link'] = get_permalink();
 			$post['date'] = get_the_date();
-			$product = wc_get_product( get_the_ID() ) );
+			$product = wc_get_product( $id );
 			$post['stock'] = $product->get_total_stock();
 			$post['chapeu'] = $chapeu ? $chapeu[0] : '';
 			$res[0][] = $post;
