@@ -318,7 +318,9 @@ function wppop_ST4FB_header() {
 }
 add_action('wp_head', 'wppop_ST4FB_header');
 // The custom function MUST be hooked to the init action hook
-add_action( 'init', 'lc_register_movie_post_type' );
+
+//add_action( 'init', 'lc_register_movie_post_type' );
+
 // A custom function that calls register_post_type
 function lc_register_movie_post_type() {
   // Set various pieces of text, $labels is used inside the $args array
@@ -1904,6 +1906,8 @@ function woocommerce_button_proceed_to_checkout() { ?>
 /**
  * When an item is added to the cart, remove other products
  */
+
+/*
 function pop_dobke_change_add_success_text(){
 	$message = 'Você só pode solicitar 1 livro. O livro que eu havia selecionado foi substituído. <a href="/cart" class="wc-forward">Fazer pedido</a>';
 	return $message;
@@ -1921,3 +1925,4 @@ function pop_dobke_empty_cart( $valid, $product_id, $quantity ) {
 
 }
 add_filter( 'woocommerce_add_to_cart_validation', 'pop_dobke_empty_cart', 10, 3 );
+*/
