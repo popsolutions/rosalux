@@ -1062,6 +1062,7 @@ else if(is_page('sobre-nos')){ ?>
 				div += '<p>' + i.tp_livro_autor + '</p>';
 				div += '<p>' + i.tp_livro_editora + '</p>';
 				div += '<p>' + i.tp_livro_ano + '</p>';
+				div += '<p>' + i.stock + '</p>';
 				div += '<p><a href="'+ i.permalink +'" target="_blank">Ler/Baixar</p>';
 				div += '<div class="content">' + i.post_excerpt +'</div>';
 				div += '</div></div></div></div>';
