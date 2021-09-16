@@ -1063,7 +1063,7 @@ else if(is_page('sobre-nos')){ ?>
 				div += '<p>' + i.tp_livro_editora + '</p>';
 				div += '<p>' + i.tp_livro_ano + '</p>';
 				if(i.stock > 0){
-					div += '<a href="?add-to-cart='+i.ID+'"" rel="nofollow">SOLICITAR LIVRO</a>';
+					div += '<a href="/?add-to-cart='+i.ID+'"" rel="nofollow">SOLICITAR LIVRO</a>';
 				}
 				div += '<p><a href="'+ i.permalink +'" target="_blank">Ler/Baixar</p>';
 				div += '<div class="content">' + i.post_excerpt +'</div>';
@@ -1964,6 +1964,15 @@ function pop_dobke_custom_button_text( $button_text ) {
  	</a>
  	<?php
  }
+
+add_action( 'woocommerce_before_shop_loop', 'woocommerce_product_archive_description', 10 );
+
+add_filter( 'woocommerce_loop_add_to_cart_args', 'custom_loop_add_to_cart_quantity_arg', 10, 2 );
+function custom_loop_add_to_cart_quantity_arg( $args ) {
+	$args['quantity'] = 1; // Max value
+	return $args;
+}
+
 
 /**
  * When an item is added to the cart, remove other products
