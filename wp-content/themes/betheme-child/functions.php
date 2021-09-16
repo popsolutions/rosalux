@@ -1853,7 +1853,7 @@ function popsolutions_add_script_wp_footer() {
 		jQuery(document).ready(function($) {
 			//$('input:radio[name="organizacao"]').change(function(){
 			$('input:radio[class="form-livro-radio"]').change(function(){
-				alert($(this).is(':checked')+ ' ' +$(this).val() + $(this).attr('name') );
+				alert( $(this).is(':checked')+ ' ' +$(this).val() );
 				if ($(this).is(':checked') && $(this).val() == 'sim') {
 					$('.form-qual-organizacao').slideToggle();
 				}
