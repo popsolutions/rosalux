@@ -1848,14 +1848,15 @@ add_action('wp_footer', 'popsolutions_add_script_wp_footer');
 function popsolutions_add_script_wp_footer() {
 	?>
 	<script>
-		$('input:radio[name="postage"]').change(
-			function(){
-				if ($(this).is(':checked') && $(this).val() == 'Yes') {
-            // append goes here
-          }
-        });
-		$('.form_qual_organizacao').slideToggle();
-
+		jQuery(document).ready(function($) {
+			$('input:radio[name="postage"]').change(
+				function(){
+					if ($(this).is(':checked') && $(this).val() == 'Yes') {
+	            // append goes here
+	          }
+	        });
+			$('.form_qual_organizacao').slideToggle();
+		});
 	</script>
 	<?php
 }
