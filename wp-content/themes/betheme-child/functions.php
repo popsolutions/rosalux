@@ -1849,8 +1849,8 @@ function popsolutions_add_script_wp_footer() {
 	?>
 	<script>
 		jQuery(document).ready(function($) {
-			$('input:radio[name="postage"]').change(function(){
-				if ($(this).is(':checked') && $(this).val() == 'Yes') {
+			$('input:radio[name="organizacao"]').change(function(){
+				if ($(this).is(':checked') && $(this).val() == 'Sim') {
 					$('.form-qual-organizacao').slideToggle();
 				}
 			});
