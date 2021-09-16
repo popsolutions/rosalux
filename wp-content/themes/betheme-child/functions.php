@@ -1820,14 +1820,20 @@ function custom_checkout_field($checkout)
 		'placeholder' => __('organização') ,
 	) ,	$checkout->get_value('qual_organizacao'));
 
-
-	woocommerce_form_field('escolas', array(
+	woocommerce_form_field('escola', array(
 		'type' => 'radio',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
 		'class' => array(	'form-livro-radio form-row-wide') ,
 		'label' => __('Você faz parte de escolas ou bibliotecas comunitárias?') ,
-	), $checkout->get_value('escolas'));
+	), $checkout->get_value('escola'));
+
+	woocommerce_form_field('qual_escola', array(
+		'type' => 'text',
+		'class' => array(	'form-qual-escola form-hidden form-row-wide') ,
+		'label' => __('Qual escola o biblioteca?') ,
+		'placeholder' => __('escola o biblioteca') ,
+	) ,	$checkout->get_value('qual_escola'));
 
 	woocommerce_form_field('jornalista', array(
 		'type' => 'radio',
@@ -1839,7 +1845,7 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('veiculo', array(
 		'type' => 'text',
-		'class' => array(	'my-field-class form-row-wide') ,
+		'class' => array(	'form-qual-jornalista form-row-wide') ,
 		'label' => __('Qual veículo?') ,
 		'placeholder' => __('Veículo') ,
 	) ,	$checkout->get_value('veiculo'));
@@ -1853,9 +1859,12 @@ function popsolutions_add_script_wp_footer() {
 		jQuery(document).ready(function($) {
 			//$('input:radio[name="organizacao"]').change(function(){
 			$('.form-livro-radio input:radio').click(function(){
-				alert( $(this).is(':checked')+ ' ' +$(this).val()+' '+$(this).attr('name') );
-				if ($(this).is(':checked') && $(this).val() == 'sim') {
-					$('.form-qual-organizacao').slideToggle();
+				//alert( $(this).is(':checked')+ ' ' +$(this).val()+' '+$(this).attr('name') );
+				var origen = $(this).attr('name');
+				if ($(this).is(':checked') && $(this).val() == 'sim' ) {
+					$('.form-qual-'+origen).slideToggle();
+				}else{
+					$('.form-qual-'+origen).slideToggle();
 				}
 			});
 		});
@@ -1889,7 +1898,9 @@ add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_che
 function my_custom_checkout_field_display_admin_order_meta($order){
 	echo '<p><strong>'.__('Seu interesse').':</strong> ' . get_post_meta( $order->id, 'interesse', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de alguma organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'organizacao', true ) . '</p>';
+	echo '<p><strong>'.__('Qual organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'qual_organizacao', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'escolas', true ) . '</p>';
+	echo '<p><strong>'.__('Qual escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'qual_escolas', true ) . '</p>';
 	echo '<p><strong>'.__('Você é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
 	echo '<p><strong>'.__('Qual veículo?').':</strong> ' . get_post_meta( $order->id, 'veiculo', true ) . '</p>';
 }
