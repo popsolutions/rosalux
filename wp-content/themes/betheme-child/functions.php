@@ -1891,10 +1891,10 @@ function my_custom_checkout_field_process() {
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual organização da sociedade civil?' ), 'error' );
 		}
 	}
-	if ( ! $_POST['escolas'] ){
+	if ( ! $_POST['escola'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de escolas ou bibliotecas comunitárias?' ), 'error' );
 	}else{
-		if($_POST['escolas'] == 'sim' && !$_POST['qual_escola']){
+		if($_POST['escola'] == 'sim' && !$_POST['qual_escola']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual escola ou biblioteca comunitaria?' ), 'error' );
 		}
 	}
@@ -1916,7 +1916,7 @@ function my_custom_checkout_field_display_admin_order_meta($order){
 	echo '<p><strong>'.__('Seu interesse').':</strong> ' . get_post_meta( $order->id, 'interesse', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de alguma organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'organizacao', true ) . '</p>';
 	echo '<p><strong>'.__('Qual organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'qual_organizacao', true ) . '</p>';
-	echo '<p><strong>'.__('Você faz parte de escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'escolas', true ) . '</p>';
+	echo '<p><strong>'.__('Você faz parte de escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'escola', true ) . '</p>';
 	echo '<p><strong>'.__('Qual escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'qual_escolas', true ) . '</p>';
 	echo '<p><strong>'.__('Você é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
 	echo '<p><strong>'.__('Qual veículo?').':</strong> ' . get_post_meta( $order->id, 'veiculo', true ) . '</p>';
