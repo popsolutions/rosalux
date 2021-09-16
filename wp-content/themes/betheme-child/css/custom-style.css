@@ -2417,3 +2417,5 @@ span.chapeu{
 .woocommerce #payment #place_order, .woocommerce-page #payment #place_order{border: 1px solid}
 .wc-proceed-to-checkout a{color: #ff2600 !important;}
 .product-total, .woocommerce-shipping-totals{display: none}
+
+.woocommerce a.checkout-button {color: white !important;}
