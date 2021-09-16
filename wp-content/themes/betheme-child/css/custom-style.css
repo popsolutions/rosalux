@@ -2418,4 +2418,4 @@ span.chapeu{
 .wc-proceed-to-checkout a{color: #ff2600 !important;}
 .product-total, .woocommerce-shipping-totals{display: none}
 
-.woocommerce a.checkout-button {color: white !important;}
+.woocommerce a.checkout-button: hover; {color: white !important;}
