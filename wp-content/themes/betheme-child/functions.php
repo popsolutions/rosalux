@@ -1815,7 +1815,7 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('qual_organizacao', array(
 		'type' => 'text',
-		'class' => array(	'form_qual_organizacao form-hidden form-row-wide') ,
+		'class' => array(	'form-qual-organizacao form-hidden form-row-wide') ,
 		'label' => __('Qual organização?') ,
 		'placeholder' => __('organização') ,
 	) ,	$checkout->get_value('qual_organizacao'));
@@ -1849,14 +1849,13 @@ function popsolutions_add_script_wp_footer() {
 	?>
 	<script>
 		jQuery(document).ready(function($) {
-			$('input:radio[name="postage"]').change(
-				function(){
-					if ($(this).is(':checked') && $(this).val() == 'Yes') {
-	            // append goes here
-	          }
-	        });
-			$('.form_qual_organizacao').slideToggle();
+			$('input:radio[name="postage"]').change(function(){
+				if ($(this).is(':checked') && $(this).val() == 'Yes') {
+					$('.form-qual-organizacao').slideToggle();
+				}
+			});
 		});
+
 	</script>
 	<?php
 }
