@@ -1867,9 +1867,9 @@ function popsolutions_add_script_wp_footer() {
 				//alert( $(this).is(':checked')+ ' ' +$(this).val()+' '+$(this).attr('name') );
 				var origen = $(this).attr('name');
 				if ($(this).is(':checked') && $(this).val() == 'sim' ) {
-					$('.form-qual-'+origen).slideUp();
-				}else{
 					$('.form-qual-'+origen).slideDown();
+				}else{
+					$('.form-qual-'+origen).slideUp();
 				}
 			});
 		});
