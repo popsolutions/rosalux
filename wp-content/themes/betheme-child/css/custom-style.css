@@ -2419,3 +2419,5 @@ span.chapeu{
 .product-total, .woocommerce-shipping-totals{display: none}
 
 .woocommerce a.checkout-button:hover {color: white !important;}
+
+.form-hidden{display: none;}

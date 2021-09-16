@@ -1800,7 +1800,7 @@ function custom_checkout_field($checkout)
 		'required' => 'true',
 		'class' => array(	'my-field-class form-row-wide') ,
 		'label' => __('Qual seu interesse no tema do livro? (Conhecimento pessoal, acadêmico,
-formação em grupo...)') ,
+			formação em grupo...)') ,
 		'placeholder' => __('Seu interesse') ,
 	) ,	$checkout->get_value('interesse'));
 
@@ -1809,9 +1809,18 @@ formação em grupo...)') ,
 		'type' => 'radio',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
-		'class' => array(	'my-field-class form-row-wide') ,
+		'class' => array(	'form_livro_radio form-row-wide') ,
 		'label' => __('Você faz parte de alguma organização da sociedade civil?') ,
 	) ,	$checkout->get_value('organizacao'));
+
+	woocommerce_form_field('qual_organizacao', array(
+		'type' => 'text',
+		'class' => array(	'form_qual_organizacao form-hidden form-row-wide') ,
+		'label' => __('Qual organização?') ,
+		'placeholder' => __('organização') ,
+	) ,	$checkout->get_value('qual_organizacao'));
+
+
 	woocommerce_form_field('escolas', array(
 		'type' => 'radio',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
@@ -1819,7 +1828,7 @@ formação em grupo...)') ,
 		'class' => array(	'my-field-class form-row-wide') ,
 		'label' => __('Você faz parte de escolas ou bibliotecas comunitárias?') ,
 	), $checkout->get_value('escolas'));
-		woocommerce_form_field('jornalista', array(
+	woocommerce_form_field('jornalista', array(
 		'type' => 'radio',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
@@ -1835,6 +1844,21 @@ formação em grupo...)') ,
 	
 	echo '</div>';
 }
+add_action('wp_footer', 'popsolutions_add_script_wp_footer');
+function popsolutions_add_script_wp_footer() {
+	?>
+	<script>
+		$('input:radio[name="postage"]').change(
+			function(){
+				if ($(this).is(':checked') && $(this).val() == 'Yes') {
+            // append goes here
+          }
+        });
+		$('.form_qual_organizacao').slideToggle();
+
+	</script>
+	<?php
+}
 
 /**
  * 2. Process the checkout - We then need to validate the field. If someone does not fill out the field they will get an error message.
@@ -1843,23 +1867,23 @@ formação em grupo...)') ,
 add_action('woocommerce_checkout_process', 'my_custom_checkout_field_process');
 function my_custom_checkout_field_process() {
     // Check if set, if its not set add an error.
-  if ( ! $_POST['interesse'] )
-        wc_add_notice( __( 'O campo ainda precisa ser preenchido: Seu interesse' ), 'error' );
-  if ( ! $_POST['organizacao'] )
-        wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de alguma organização da sociedade civil?' ), 'error' );
+	if ( ! $_POST['interesse'] )
+		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Seu interesse' ), 'error' );
+	if ( ! $_POST['organizacao'] )
+		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de alguma organização da sociedade civil?' ), 'error' );
 	if ( ! $_POST['escolas'] )
-        wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de escolas ou bibliotecas comunitárias?' ), 'error' );
-  if ( ! $_POST['jornalista'] )
-        wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz é jornalista?' ), 'error' );
+		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de escolas ou bibliotecas comunitárias?' ), 'error' );
+	if ( ! $_POST['jornalista'] )
+		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz é jornalista?' ), 'error' );
 }
 
 /**
  * 3. Display field value on the order edit page.
  */
-		
+
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
 function my_custom_checkout_field_display_admin_order_meta($order){
-  echo '<p><strong>'.__('Seu interesse').':</strong> ' . get_post_meta( $order->id, 'interesse', true ) . '</p>';
+	echo '<p><strong>'.__('Seu interesse').':</strong> ' . get_post_meta( $order->id, 'interesse', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de alguma organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'organizacao', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'escolas', true ) . '</p>';
 	echo '<p><strong>'.__('Você é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
@@ -1871,10 +1895,10 @@ function my_custom_checkout_field_display_admin_order_meta($order){
 
 
 function my_plugin_body_class($classes) {
-    if ( is_product() ) {
-    	$classes[] = 'single-livro';
-    	return $classes;
-    }
+	if ( is_product() ) {
+		$classes[] = 'single-livro';
+		return $classes;
+	}
 }
 
 add_filter('body_class', 'my_plugin_body_class');
@@ -1882,30 +1906,30 @@ add_filter('body_class', 'my_plugin_body_class');
 /* show cart if not empty */
 add_filter( 'generate_woocommerce_menu_item_location', 'tu_hide_empty_cart_icon' );
 function tu_hide_empty_cart_icon( $location ) {
-    if ( class_exists( 'WooCommerce' ) && sizeof( WC()->cart->get_cart() ) > 0 ) {
-        return $location;
-    }
+	if ( class_exists( 'WooCommerce' ) && sizeof( WC()->cart->get_cart() ) > 0 ) {
+		return $location;
+	}
 
-    return 'none';
+	return 'none';
 }
 
 add_filter( 'woocommerce_get_price_html', 'pop_dobke_remove_price');
 function pop_dobke_remove_price($price){     
-     return ;
+	return ;
 }
 
 add_filter( 'woocommerce_order_button_text', 'pop_dobke_custom_button_text' );
- 
+
 function pop_dobke_custom_button_text( $button_text ) {
    return 'Finalizar pedido'; // new text is here 
-}
+ }
 
-function woocommerce_button_proceed_to_checkout() { ?>
- <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward">
- <?php esc_html_e( 'Fazer pedido', 'woocommerce' ); ?>
- </a>
- <?php
-}
+ function woocommerce_button_proceed_to_checkout() { ?>
+ 	<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward">
+ 		<?php esc_html_e( 'Fazer pedido', 'woocommerce' ); ?>
+ 	</a>
+ 	<?php
+ }
 
 /**
  * When an item is added to the cart, remove other products
