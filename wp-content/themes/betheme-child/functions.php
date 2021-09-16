@@ -1896,12 +1896,14 @@ function my_custom_checkout_field_process() {
 	}else{
 		if($_POST['escolas'] == 'sim' && !$_POST['qual_escola']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual escola ou biblioteca comunitaria?' ), 'error' );
+		}
 	}
 	if ( ! $_POST['jornalista'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz é jornalista?' ), 'error' );
 	}else{
 		if($_POST['jornalista'] == 'sim' && !$_POST['veiculo']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual veiculo?' ), 'error' );
+		}
 	}
 }
 
