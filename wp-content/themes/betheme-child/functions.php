@@ -1809,7 +1809,7 @@ function custom_checkout_field($checkout)
 		'type' => 'radio',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
-		'class' => array(	'form_livro_radio form-row-wide') ,
+		'class' => array(	'form-livro-radio form-row-wide') ,
 		'label' => __('Você faz parte de alguma organização da sociedade civil?') ,
 	) ,	$checkout->get_value('organizacao'));
 
@@ -1825,16 +1825,18 @@ function custom_checkout_field($checkout)
 		'type' => 'radio',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
-		'class' => array(	'my-field-class form-row-wide') ,
+		'class' => array(	'form-livro-radio form-row-wide') ,
 		'label' => __('Você faz parte de escolas ou bibliotecas comunitárias?') ,
 	), $checkout->get_value('escolas'));
+
 	woocommerce_form_field('jornalista', array(
 		'type' => 'radio',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
-		'class' => array(	'my-field-class form-row-wide') ,
+		'class' => array(	'form-livro-radio form-row-wide') ,
 		'label' => __('Você faz é jornalista?') ,
 	) ,	$checkout->get_value('jornalista'));
+
 	woocommerce_form_field('veiculo', array(
 		'type' => 'text',
 		'class' => array(	'my-field-class form-row-wide') ,
@@ -1849,9 +1851,10 @@ function popsolutions_add_script_wp_footer() {
 	?>
 	<script>
 		jQuery(document).ready(function($) {
-			$('input:radio[name="organizacao"]').change(function(){
-				alert($(this).is(':checked')+ ' ' +$(this).val());
-				if ($(this).is(':checked') && $(this).val() == 'Sim') {
+			//$('input:radio[name="organizacao"]').change(function(){
+			$('input:radio[class="form-livro-radio"]').change(function(){
+				alert($(this).is(':checked')+ ' ' +$(this).val() + $(this).attr('name') );
+				if ($(this).is(':checked') && $(this).val() == 'sim') {
 					$('.form-qual-organizacao').slideToggle();
 				}
 			});
