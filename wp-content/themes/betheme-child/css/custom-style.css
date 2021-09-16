@@ -2421,4 +2421,4 @@ span.chapeu{
 .woocommerce a.checkout-button:hover {color: white !important;}
 
 .form-hidden{display: none;}
-.mailpoet_woocommerce_checkout_optin_field{display: none;}
+#mailpoet_woocommerce_checkout_optin_field{display: none;}
