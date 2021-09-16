@@ -1807,6 +1807,7 @@ function custom_checkout_field($checkout)
 	echo '<div id="custom_checkout_field"><h2>' . __('Organizações') . '</h2>';
 	woocommerce_form_field('organizacao', array(
 		'type' => 'radio',
+		'required' => 'true',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
 		'class' => array(	'form-livro-radio form-row-wide') ,
@@ -1815,6 +1816,7 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('qual_organizacao', array(
 		'type' => 'text',
+		'required' => 'true',
 		'class' => array(	'form-qual-organizacao form-hidden form-row-wide') ,
 		'label' => __('Qual organização?') ,
 		'placeholder' => __('organização') ,
@@ -1822,6 +1824,7 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('escola', array(
 		'type' => 'radio',
+		'required' => 'true',
 		'options' => array( 'sim' => 'Sim', 'nao' => 'Não'),
 		'required' => 'true',
 		'class' => array(	'form-livro-radio form-row-wide') ,
@@ -1830,6 +1833,7 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('qual_escola', array(
 		'type' => 'text',
+		'required' => 'true',
 		'class' => array(	'form-qual-escola form-hidden form-row-wide') ,
 		'label' => __('Qual escola o biblioteca?') ,
 		'placeholder' => __('escola o biblioteca') ,
@@ -1845,7 +1849,8 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('veiculo', array(
 		'type' => 'text',
-		'class' => array(	'form-qual-jornalista form-row-wide') ,
+		'required' => 'true',
+		'class' => array(	'form-qual-jornalista form-hidden form-row-wide') ,
 		'label' => __('Qual veículo?') ,
 		'placeholder' => __('Veículo') ,
 	) ,	$checkout->get_value('veiculo'));
@@ -1862,9 +1867,9 @@ function popsolutions_add_script_wp_footer() {
 				//alert( $(this).is(':checked')+ ' ' +$(this).val()+' '+$(this).attr('name') );
 				var origen = $(this).attr('name');
 				if ($(this).is(':checked') && $(this).val() == 'sim' ) {
-					$('.form-qual-'+origen).slideToggle();
+					$('.form-qual-'+origen).slideUp();
 				}else{
-					$('.form-qual-'+origen).slideToggle();
+					$('.form-qual-'+origen).slideDown();
 				}
 			});
 		});
