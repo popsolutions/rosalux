@@ -1833,8 +1833,8 @@ function custom_checkout_field($checkout)
 	woocommerce_form_field('qual_escola', array(
 		'type' => 'text',
 		'class' => array(	'form-qual-escola form-hidden form-row-wide') ,
-		'label' => __('Qual escola o biblioteca?') ,
-		'placeholder' => __('escola o biblioteca') ,
+		'label' => __('Qual escola ou biblioteca?') ,
+		'placeholder' => __('escola ou biblioteca') ,
 	) ,	$checkout->get_value('qual_escola'));
 
 	woocommerce_form_field('jornalista', array(
@@ -1891,10 +1891,18 @@ function my_custom_checkout_field_process() {
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual organização da sociedade civil?' ), 'error' );
 		}
 	}
-	if ( ! $_POST['escolas'] )
+	if ( ! $_POST['escolas'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de escolas ou bibliotecas comunitárias?' ), 'error' );
-	if ( ! $_POST['jornalista'] )
+	}else{
+		if($_POST['escolas'] == 'sim' && !$_POST['qual_escola']){
+			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual escola ou biblioteca comunitaria?' ), 'error' );
+	}
+	if ( ! $_POST['jornalista'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz é jornalista?' ), 'error' );
+	}else{
+		if($_POST['jornalista'] == 'sim' && !$_POST['veiculo']){
+			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual veiculo?' ), 'error' );
+	}
 }
 
 /**
