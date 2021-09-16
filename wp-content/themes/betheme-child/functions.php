@@ -1816,7 +1816,6 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('qual_organizacao', array(
 		'type' => 'text',
-		'required' => 'true',
 		'class' => array(	'form-qual-organizacao form-hidden form-row-wide') ,
 		'label' => __('Qual organização?') ,
 		'placeholder' => __('organização') ,
@@ -1833,7 +1832,6 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('qual_escola', array(
 		'type' => 'text',
-		'required' => 'true',
 		'class' => array(	'form-qual-escola form-hidden form-row-wide') ,
 		'label' => __('Qual escola o biblioteca?') ,
 		'placeholder' => __('escola o biblioteca') ,
@@ -1849,7 +1847,6 @@ function custom_checkout_field($checkout)
 
 	woocommerce_form_field('veiculo', array(
 		'type' => 'text',
-		'required' => 'true',
 		'class' => array(	'form-qual-jornalista form-hidden form-row-wide') ,
 		'label' => __('Qual veículo?') ,
 		'placeholder' => __('Veículo') ,
@@ -1887,8 +1884,13 @@ function my_custom_checkout_field_process() {
     // Check if set, if its not set add an error.
 	if ( ! $_POST['interesse'] )
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Seu interesse' ), 'error' );
-	if ( ! $_POST['organizacao'] )
+	if ( ! $_POST['organizacao'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de alguma organização da sociedade civil?' ), 'error' );
+	}else{
+		if($_POST['organizacao'] == 'sim' && !$_POST['qual_organizacao']){
+			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual organização da sociedade civil?' ), 'error' );
+		}
+	}
 	if ( ! $_POST['escolas'] )
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de escolas ou bibliotecas comunitárias?' ), 'error' );
 	if ( ! $_POST['jornalista'] )
