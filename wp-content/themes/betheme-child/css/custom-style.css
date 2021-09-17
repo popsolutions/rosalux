@@ -2377,7 +2377,7 @@ span.chapeu{
 }
 
 .cart_item .product-remove .button_icon, .woocommerce .checkout-button{color: red;}
-.product-price, .product-subtotal, .cart-subtotal, .order-total, .woocommerce-cart-form__contents .actions, .product-quantity {display: none;}
+.product-price, .product-subtotal, .cart-subtotal, .order-total, .woocommerce-cart-form__contents .actions, .product-quantity {display: none !important;}
 .woocommerce-input-wrapper .input-radio, .woocommerce-form__input .woocommerce-form__input-checkbox {width: 10px; margin-right: 12px; float: left;}
 
 /* Custom CSS */
@@ -2416,7 +2416,7 @@ span.chapeu{
 }
 .woocommerce #payment #place_order, .woocommerce-page #payment #place_order{border: 1px solid}
 .wc-proceed-to-checkout a{color: #ff2600 !important;}
-.product-total, .woocommerce-shipping-totals{display: none}
+.product-total, .woocommerce-shipping-totals{display: none !important}
 
 .woocommerce a.checkout-button:hover {color: white !important;}
 
