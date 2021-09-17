@@ -1966,36 +1966,6 @@ function pop_dobke_custom_button_text( $button_text ) {
  }
 
 
-
-function check_cats_in_cart( $product_id ) {
-    
-    $has_term = true;
-
-    foreach( WC()->cart->get_cart() as $item ){
-        
-         if ( $item['product_id'] == $product_id  )
-           $has_term = true;
-
-        if( $has_term )
-            break; // stops the 1st loop
-    }
-    return $has_term;
-}
-
-add_filter( 'woocommerce_add_to_cart_validation', 'sold_individually', 10, 3 );
-function sold_individually( $passed, $product_id, $quantity) {
-
-    $passed = check_cats_in_cart( $product_id );
-
-    if( ! $passed ){
-        // Displaying a custom message
-        $message = __("Este livro já está no seu carro.", "woocommerce");
-        wc_add_notice( $message, 'error' );
-    }
-    return $passed;
-}
-
-
 /**
  * When an item is added to the cart, remove other products
  */
