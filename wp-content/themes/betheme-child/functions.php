@@ -1881,31 +1881,44 @@ function popsolutions_add_script_wp_footer() {
  * 2. Process the checkout - We then need to validate the field. If someone does not fill out the field they will get an error message.
  */
 
-add_action('woocommerce_checkout_process', 'my_custom_checkout_field_process');
-function my_custom_checkout_field_process() {
+add_action('woocommerce_checkout_update_order_meta', 'custom_checkout_field_update_order_meta');
+
+function custom_checkout_field_update_order_meta( $order_id ) {
     // Check if set, if its not set add an error.
-	if ( ! $_POST['interesse'] )
+	if ( ! $_POST['interesse'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Seu interesse' ), 'error' );
+	}else{
+		update_post_meta( $order_id, 'Interesse', esc_attr($_POST['interesse']));
+	}
 	if ( ! $_POST['organizacao'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de alguma organização da sociedade civil?' ), 'error' );
 	}else{
 		if($_POST['organizacao'] == 'sim' && !$_POST['qual_organizacao']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual organização da sociedade civil?' ), 'error' );
+		}else{
+			update_post_meta( $order_id, 'Qual Organizacao', esc_attr($_POST['qual_organizacao']));
 		}
+		update_post_meta( $order_id, 'Organizacao', esc_attr($_POST['organizacao']));
 	}
 	if ( ! $_POST['escola'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de escolas ou bibliotecas comunitárias?' ), 'error' );
 	}else{
 		if($_POST['escola'] == 'sim' && !$_POST['qual_escola']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual escola ou biblioteca comunitaria?' ), 'error' );
+		}else{
+			update_post_meta( $order_id, 'Qual escolas ou biblioteca', esc_attr($_POST['qual_escola']));
 		}
+		update_post_meta( $order_id, 'Escolas e Bibliotecas', esc_attr($_POST['escola']));
 	}
 	if ( ! $_POST['jornalista'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz é jornalista?' ), 'error' );
 	}else{
 		if($_POST['jornalista'] == 'sim' && !$_POST['veiculo']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual veiculo?' ), 'error' );
+		}else{
+			update_post_meta( $order_id, 'Qual Veiculo', esc_attr($_POST['veiculo']));
 		}
+		update_post_meta( $order_id, 'Jornalista', esc_attr($_POST['jornalista']));
 	}
 }
 
@@ -1923,9 +1936,6 @@ function my_custom_checkout_field_display_admin_order_meta($order){
 	echo '<p><strong>'.__('Você é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
 	echo '<p><strong>'.__('Qual veículo?').':</strong> ' . get_post_meta( $order->id, 'veiculo', true ) . '</p>';
 }
-
-
-
 
 
 function my_plugin_body_class($classes) {
@@ -1990,28 +2000,3 @@ function pop_dobke_empty_cart( $valid, $product_id, $quantity ) {
 add_filter( 'woocommerce_add_to_cart_validation', 'pop_dobke_empty_cart', 10, 3 );
 */
 
-function woocommerce_product_archive_description() {
-// Don’t display the description on search results page
-	if ( is_search() ) {
-		return;
-	}
-
-	if ( is_post_type_archive( ‘product’ ) && 0 === absint( get_query_var( ‘paged’ ) ) ) {
-
-		$shop_page_id = wc_get_page_id( ‘shop’ );
-
-// copied from siteorigin-panels.php
-		if ( get_post_meta( $shop_page_id, ‘panels_data’, true ) ) {
-			$panel_content = SiteOrigin_Panels::renderer()->render(
-				$shop_page_id,
-// Add CSS if this is not the main single post, this is handled by add_single_css
-				$shop_page_id !== get_queried_object_id()
-			);
-
-			if ( ! empty( $panel_content ) ) {
-				echo $panel_content;
-			}
-		}
-// end siteorigin-panels.php
-	}
-}
