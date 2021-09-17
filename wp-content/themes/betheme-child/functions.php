@@ -1929,9 +1929,9 @@ function custom_checkout_field_update_order_meta( $order_id ) {
 function my_custom_checkout_field_display_admin_order_meta($order){
 	echo '<p><strong>'.__('Seu interesse').':</strong> ' . get_post_meta( $order->id, 'interesse', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de alguma organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'organizacao', true ) . '</p>';
-	echo '<p><strong>'.__('Qual organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, '_qual_organizacao', true ) . '</p>';
+	echo '<p><strong>'.__('Qual organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'qual_organizacao', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'escola', true ) . '</p>';
-	echo '<p><strong>'.__('Qual escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'qual_escolas', true ) . '</p>';
+	echo '<p><strong>'.__('Qual escolas ou bibliotecas comunitárias?').':</strong> ' . get_post_meta( $order->id, 'qual_escola', true ) . '</p>';
 	echo '<p><strong>'.__('Você é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
 	echo '<p><strong>'.__('Qual veículo?').':</strong> ' . get_post_meta( $order->id, 'veiculo', true ) . '</p>';
 }
