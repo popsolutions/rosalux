@@ -1888,7 +1888,7 @@ function custom_checkout_field_update_order_meta( $order_id ) {
 	if ( ! $_POST['interesse'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Seu interesse' ), 'error' );
 	}else{
-		update_post_meta( $order_id, 'Interesse', esc_attr($_POST['interesse']));
+		update_post_meta( $order_id, 'interesse', esc_attr($_POST['interesse']));
 	}
 	if ( ! $_POST['organizacao'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de alguma organização da sociedade civil?' ), 'error' );
@@ -1896,9 +1896,9 @@ function custom_checkout_field_update_order_meta( $order_id ) {
 		if($_POST['organizacao'] == 'sim' && !$_POST['qual_organizacao']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual organização da sociedade civil?' ), 'error' );
 		}else{
-			update_post_meta( $order_id, 'Qual Organizacao', esc_attr($_POST['qual_organizacao']));
+			update_post_meta( $order_id, 'qual_organizacao', esc_attr($_POST['qual_organizacao']));
 		}
-		update_post_meta( $order_id, 'Organizacao', esc_attr($_POST['organizacao']));
+		update_post_meta( $order_id, 'organizacao', esc_attr($_POST['organizacao']));
 	}
 	if ( ! $_POST['escola'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz parte de escolas ou bibliotecas comunitárias?' ), 'error' );
@@ -1906,9 +1906,9 @@ function custom_checkout_field_update_order_meta( $order_id ) {
 		if($_POST['escola'] == 'sim' && !$_POST['qual_escola']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual escola ou biblioteca comunitaria?' ), 'error' );
 		}else{
-			update_post_meta( $order_id, 'Qual escolas ou biblioteca', esc_attr($_POST['qual_escola']));
+			update_post_meta( $order_id, 'qual_escola', esc_attr($_POST['qual_escola']));
 		}
-		update_post_meta( $order_id, 'Escolas e Bibliotecas', esc_attr($_POST['escola']));
+		update_post_meta( $order_id, 'escola', esc_attr($_POST['escola']));
 	}
 	if ( ! $_POST['jornalista'] ){
 		wc_add_notice( __( 'O campo ainda precisa ser preenchido: Você faz é jornalista?' ), 'error' );
@@ -1916,9 +1916,9 @@ function custom_checkout_field_update_order_meta( $order_id ) {
 		if($_POST['jornalista'] == 'sim' && !$_POST['veiculo']){
 			wc_add_notice( __( 'O campo ainda precisa ser preenchido: Qual veiculo?' ), 'error' );
 		}else{
-			update_post_meta( $order_id, 'Qual Veiculo', esc_attr($_POST['veiculo']));
+			update_post_meta( $order_id, 'veiculo', esc_attr($_POST['veiculo']));
 		}
-		update_post_meta( $order_id, 'Jornalista', esc_attr($_POST['jornalista']));
+		update_post_meta( $order_id, 'jornalista', esc_attr($_POST['jornalista']));
 	}
 }
 
@@ -1926,7 +1926,6 @@ function custom_checkout_field_update_order_meta( $order_id ) {
  * 3. Display field value on the order edit page.
  */
 
-add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
 function my_custom_checkout_field_display_admin_order_meta($order){
 	echo '<p><strong>'.__('Seu interesse').':</strong> ' . get_post_meta( $order->id, 'interesse', true ) . '</p>';
 	echo '<p><strong>'.__('Você faz parte de alguma organização da sociedade civil?').':</strong> ' . get_post_meta( $order->id, 'organizacao', true ) . '</p>';
@@ -1936,7 +1935,7 @@ function my_custom_checkout_field_display_admin_order_meta($order){
 	echo '<p><strong>'.__('Você é jornalista?').':</strong> ' . get_post_meta( $order->id, 'jornalista', true ) . '</p>';
 	echo '<p><strong>'.__('Qual veículo?').':</strong> ' . get_post_meta( $order->id, 'veiculo', true ) . '</p>';
 }
-
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
 
 function my_plugin_body_class($classes) {
 	if ( is_product() ) {
