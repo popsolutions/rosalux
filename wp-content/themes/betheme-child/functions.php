@@ -1063,7 +1063,7 @@ else if(is_page('sobre-nos')){ ?>
 				div += '<p>' + i.tp_livro_editora + '</p>';
 				div += '<p>' + i.tp_livro_ano + '</p>';
 				if(i.stock > 0){
-					div += '<a href="/?add-to-cart='+i.ID+'"" rel="nofollow">SOLICITAR LIVRO</a>';
+					div += '<a href="?add-to-cart='+i.ID+'"" rel="nofollow">SOLICITAR LIVRO</a>';
 				}
 				div += '<p><a href="'+ i.permalink +'" target="_blank">Ler/Baixar</p>';
 				div += '<div class="content">' + i.post_excerpt +'</div>';
@@ -1862,7 +1862,7 @@ function popsolutions_add_script_wp_footer() {
 	<script>
 		jQuery(document).ready(function($) {
 			//$('input:radio[name="organizacao"]').change(function(){
-			$('.form-livro-radio input:radio').click(function(){
+				$('.form-livro-radio input:radio').click(function(){
 				//alert( $(this).is(':checked')+ ' ' +$(this).val()+' '+$(this).attr('name') );
 				var origen = $(this).attr('name');
 				if ($(this).is(':checked') && $(this).val() == 'sim' ) {
@@ -1871,11 +1871,11 @@ function popsolutions_add_script_wp_footer() {
 					$('.form-qual-'+origen).slideUp();
 				}
 			});
-		});
+			});
 
-	</script>
-	<?php
-}
+		</script>
+		<?php
+	}
 
 /**
  * 2. Process the checkout - We then need to validate the field. If someone does not fill out the field they will get an error message.
@@ -1989,3 +1989,29 @@ function pop_dobke_empty_cart( $valid, $product_id, $quantity ) {
 }
 add_filter( 'woocommerce_add_to_cart_validation', 'pop_dobke_empty_cart', 10, 3 );
 */
+
+function woocommerce_product_archive_description() {
+// Don’t display the description on search results page
+	if ( is_search() ) {
+		return;
+	}
+
+	if ( is_post_type_archive( ‘product’ ) && 0 === absint( get_query_var( ‘paged’ ) ) ) {
+
+		$shop_page_id = wc_get_page_id( ‘shop’ );
+
+// copied from siteorigin-panels.php
+		if ( get_post_meta( $shop_page_id, ‘panels_data’, true ) ) {
+			$panel_content = SiteOrigin_Panels::renderer()->render(
+				$shop_page_id,
+// Add CSS if this is not the main single post, this is handled by add_single_css
+				$shop_page_id !== get_queried_object_id()
+			);
+
+			if ( ! empty( $panel_content ) ) {
+				echo $panel_content;
+			}
+		}
+// end siteorigin-panels.php
+	}
+}
