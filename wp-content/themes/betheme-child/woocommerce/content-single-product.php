@@ -167,7 +167,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     				if ( $product->managing_stock() && $product->is_in_stock() && $product->get_stock_quantity() > 0 ){
     					?>
     					<p class="cart">
-    						<a class="button btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow">SOLICITAR LIVRO <i class="icon-forward"></i></a>
+    						<a class="button btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow">SOLICITAR LIVRO GRÁTIS<i class="icon-forward"></i></a>
 							</p>
 						<?php }?>
 					</div>
