@@ -1064,7 +1064,7 @@ else if(is_page('sobre-nos')){ ?>
 				div += '<p>' + i.tp_livro_ano + '</p>';
 				if(i.stock > 0){
 					//div += '<a href="?add-to-cart='+i.ID+'"" rel="nofollow">SOLICITAR LIVRO</a>';
-					div += '<p><a href="'+ i.permalink +'" target="_blank">SOLICITAR LIVRO</a></p>';
+					div += '<p><a href="'+ i.permalink +'" target="_blank">SOLICITAR LIVRO  GRÁTIS</a></p>';
 				}
 				div += '<p><a href="'+ i.permalink +'" target="_blank">Ler/Baixar</a></p>';
 				div += '<div class="content">' + i.post_excerpt +'</div>';
