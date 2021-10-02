@@ -2424,4 +2424,4 @@ span.chapeu{
 #mailpoet_woocommerce_checkout_optin_field{display: none;}
 #custom_checkout_field .form-hidden .optional{display: none;}
 
-.woocommerce-table--order-details tfoot{display: none}
+.woocommerce-table--order-details tfoot, .woocommerce-order-overview__total{display: none}
