@@ -1999,7 +1999,7 @@ add_filter( 'woocommerce_add_to_cart_validation', 'pop_dobke_empty_cart', 10, 3 
 */
 
 function pop_dobke_change_add_success_text(){
-	$message = 'O livro adicionado no seu pedido. <a href="/biblioteca" class="wc-forward">Adicionar outro livro.</a>';
+	$message = 'O livro foi adicionado no seu pedido. <a href="/biblioteca" class="wc-forward">Adicionar outro livro.</a>';
 	return $message;
 }
 add_filter('wc_add_to_cart_message_html','pop_dobke_change_add_success_text');
