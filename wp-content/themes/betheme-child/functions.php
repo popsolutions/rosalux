@@ -1980,23 +1980,25 @@ function pop_dobke_custom_button_text( $button_text ) {
  * When an item is added to the cart, remove other products
  */
 
-/*
+
 function pop_dobke_change_add_success_text(){
-	$message = 'Você só pode solicitar 1 livro. O livro que eu havia selecionado foi substituído. <a href="/cart" class="wc-forward">Fazer pedido</a>';
+	$message = 'O livro adicionado no seu pedido. <a href="/biblioteca" class="wc-forward">Adicionar outro livro.</a>';
 	return $message;
 }
+
+/*
 function pop_dobke_empty_cart( $valid, $product_id, $quantity ) {
 
     if( ! empty ( WC()->cart->get_cart() ) && $valid ){
         WC()->cart->empty_cart();
         add_filter('wc_add_to_cart_message_html','pop_dobke_change_add_success_text');
-        //wc_add_notice( 'Você só pode solicitar 1 livro. O livro que eu havia selecionado foi substituído. <a href="/cart" class="wc-forward">Fazer pedido</a>', 'success' );
-
     }
 
     return $valid;
 
 }
-add_filter( 'woocommerce_add_to_cart_validation', 'pop_dobke_empty_cart', 10, 3 );
 */
+//add_filter( 'woocommerce_add_to_cart_validation', 'pop_dobke_empty_cart', 10, 3 );
+add_filter( 'woocommerce_add_to_cart_validation', 'pop_dobke_change_add_success_text', 10, 3 );
+
 
