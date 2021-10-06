@@ -2425,3 +2425,6 @@ span.chapeu{
 #custom_checkout_field .form-hidden .optional{display: none;}
 
 .woocommerce-table--order-details tfoot, .woocommerce-order-overview__total{display: none}
+
+#menu-cart{list-style: none;}
+#menu-cart li a{border: 1px solid red; padding: 5px 2px}
