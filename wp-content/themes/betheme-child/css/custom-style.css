@@ -2426,5 +2426,9 @@ span.chapeu{
 
 .woocommerce-table--order-details tfoot, .woocommerce-order-overview__total{display: none}
 
-#menu-cart{list-style: none;}
-#menu-cart li a{border: 1px solid red; padding: 5px 2px}
+#menu-cart{list-style: none; margin-bottom: 40px;}
+#menu-cart li a{border: 2px solid red;
+    padding: 9px 23px;
+    font-size: 20px;
+    font-weight: 500;
+}
