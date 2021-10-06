@@ -1960,7 +1960,7 @@ function tu_hide_empty_cart_icon( $location ) {
 // Woo Sidecart - hide when empty
 add_action( 'wp_footer', function() {
 	if ( WC()->cart->is_empty() ) {
-		echo '<style type="text/css">.menu-cart{ display: none;!important }</style>';
+		echo '<style type="text/css">#menu-cart{ display: none;!important }</style>';
 	}
 });
 
