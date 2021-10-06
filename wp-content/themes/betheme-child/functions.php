@@ -1957,6 +1957,19 @@ function tu_hide_empty_cart_icon( $location ) {
 	return 'none';
 }
 
+add_action( 'wp_footer', function(){
+	if( WC()->cart->is_empty() ):
+	?>
+		<style type="text/css">
+			#menu-item-47856{
+				display: none;
+			}
+		</style>
+	<?php
+	endif; ?>
+} );
+
+<?php
 add_filter( 'woocommerce_get_price_html', 'pop_dobke_remove_price');
 function pop_dobke_remove_price($price){     
 	return ;
@@ -2020,4 +2033,3 @@ function cetweb_print_custom_menu_shortcode($atts)
           'echo' => false));
   }
   add_shortcode('print-menu', 'cetweb_print_custom_menu_shortcode');
- 
