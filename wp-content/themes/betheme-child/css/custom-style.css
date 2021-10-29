@@ -2432,5 +2432,5 @@ span.chapeu{
     font-size: 20px;
     font-weight: 500;
 }
-.events-single #tribe-events .tribe-events-back, .events-single #tribe-events  #tribe-events-header, .events-single #tribe-events .title, .events-single #tribe-events .event-content .tribe-events-footer, .events-single #tribe-events .tribe-events-notices, .events-single #tribe-events .content {margin-left:140px !important}
-	
+.events-single #tribe-events .tribe-events-back, .events-single #tribe-events  #tribe-events-header, .events-single #tribe-events .title, .events-single #tribe-events .event-content .thumb, .events-single #tribe-events .tribe-events-notices, .events-single #tribe-events .content {margin-left:140px !important}
+.events-single #tribe-events #tribe-events-footer{}
