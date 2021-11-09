@@ -2435,3 +2435,9 @@ span.chapeu{
 
 .events-single #tribe-events .tribe-events-back, .events-single #tribe-events  #tribe-events-header, .events-single #tribe-events .title, .events-single #tribe-events .event-content .thumb, .events-single #tribe-events .tribe-events-notices, .events-single #tribe-events .content {margin-left:140px !important}
 .left-bar .tribe-events-schedule{height: 95%;}
+
+.tribe-events-event-image {
+    width: 40%;
+    float: left;
+    margin-right: 20px;
+}
