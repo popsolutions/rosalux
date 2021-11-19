@@ -1333,6 +1333,7 @@ else if(is_page('sobre-nos')){ ?>
 			$livros = get_posts(array(
 				'category_name' => $cat->slug,
 				'post_type' => 'product',
+				'post_status' => 'published',
 				'posts_per_page'=>-1));
 			if($livros){
 				$count_slides = count($livros) >= 4 ? 4 : count($livros);
