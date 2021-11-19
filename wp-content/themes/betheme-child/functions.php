@@ -1333,6 +1333,7 @@ else if(is_page('sobre-nos')){ ?>
 			$livros = get_posts(array(
 				'category_name' => $cat->slug,
 				'post_type' => 'product',
+				'post_status' => 'publish',
 				'posts_per_page'=>-1));
 			if($livros){
 				$count_slides = count($livros) >= 4 ? 4 : count($livros);
@@ -1442,7 +1443,7 @@ if(strtolower($_POST['page']) == "biblioteca"){
 	if($_POST['type'] == "first_letter"){
 		$query_ = "LOWER(post_title) LIKE LOWER(%s)";
 		$str .= $wpdb->esc_like($search_term) . $wild;
-		$query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts WHERE $query_ AND post_type='product' ORDER BY post_title", $str);
+		$query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts WHERE $query_ AND post_type='product' AND post_status = 'publish' ORDER BY post_title", $str);
 		$new_query = $wpdb->remove_placeholder_escape($query);
 		$posts = $wpdb->get_results($new_query);
 		$arr['posts'] = $posts;
