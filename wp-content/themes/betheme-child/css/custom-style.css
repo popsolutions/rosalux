@@ -2441,4 +2441,4 @@ span.chapeu{
     float: left;
     margin-right: 20px;
 }
-.tribe-events-list-event-description{padding-left:140px;}
+.tribe-events-list-event-description{padding-left:140px !important;}
