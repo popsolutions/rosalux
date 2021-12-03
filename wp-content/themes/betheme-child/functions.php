@@ -1761,10 +1761,8 @@ function filter_the_title( $title ) {
 	return $title;
 }
 add_filter( 'the_title' , 'filter_the_title' , 10);
-
+/*
 function filter_the_author( $author_display_name ){
-	global $post;
-	/*
 	if( is_page('noticias') && is_singular() && in_the_loop() || is_page('noticias-es') && is_singular() && in_the_loop()  ){
 		global $post;
 		$autor = get_post_meta($post->ID, 'autor');
@@ -1776,11 +1774,11 @@ function filter_the_author( $author_display_name ){
 		$author = $custom_autor;
 	}
 	return $author;
-	*/
-	return 'test';
 }
 
-add_filter( 'the_author' , 'filter_the_author' , 10 , 1);
+add_filter( 'the_author' , 'filter_the_author' , 10);
+add_filter( 'get_the_author_display_name', 'filter_the_author' );
+*/
 
 function get_event_meta(){ ?>
 	<script>
