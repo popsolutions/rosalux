@@ -19,19 +19,19 @@ add_action( 'wp_enqueue_scripts', 'wppop_theme_enqueue_scripts' );
 */
 function wppop_login_logo() {  ?>
 	<style type="text/css">
-	body.login div#login h1 a,
-	.login h1 a {
-		background-image: url(<?php echo site_url();?>/wp-content/uploads/2020/08/logo-rosalux.png) !important;
-		height: auto;
-		width: 100%;
-		background-size: contain;
-		background-repeat: no-repeat;
-		padding-bottom: 90px;
-	}
-	body.login{
-		background: #fcfcfc;
-	}
-</style>
+		body.login div#login h1 a,
+		.login h1 a {
+			background-image: url(<?php echo site_url();?>/wp-content/uploads/2020/08/logo-rosalux.png) !important;
+			height: auto;
+			width: 100%;
+			background-size: contain;
+			background-repeat: no-repeat;
+			padding-bottom: 90px;
+		}
+		body.login{
+			background: #fcfcfc;
+		}
+	</style>
 <?php }
 add_action( 'login_enqueue_scripts', 'wppop_login_logo' );
 /* Recuperando As Imagens De Um Post Do Wordpress
@@ -1747,10 +1747,10 @@ function get_attachment_url_by_title( $title = '' ) {
   return $return;
 }
 */
-function filter_the_title( $title,$id ) {
+function filter_the_title( $title ) {
 	if( is_page('noticias') && is_singular() && in_the_loop() || is_page('noticias-es') && is_singular() && in_the_loop()  ){
 		global $post;
-		$chapeu = get_post_meta($id, 'chapeu');
+		$chapeu = get_post_meta($post->ID, 'chapeu');
 		$custom_title = '';
 		if($chapeu){
 			$custom_title .= '<span class="chapeu">'.$chapeu[0].'</span>';
@@ -1760,7 +1760,23 @@ function filter_the_title( $title,$id ) {
 	}
 	return $title;
 }
-add_filter( 'the_title' , 'filter_the_title' , 10,2);
+add_filter( 'the_title' , 'filter_the_title' , 10);
+
+function change_author( $author ){
+	if( is_page('noticias') && is_singular() && in_the_loop() || is_page('noticias-es') && is_singular() && in_the_loop()  ){
+		global $post;
+		$autor = get_post_meta($post->ID, 'autor');
+		$custom_autor = '';
+		if($autor){
+			$custom_author .= '<span class="vcard author post-author"><span class="label">Por </span><i class="icon-user"></i> <span class="fn">'.$autor[0].'</span></span>';
+		}
+		$custom_author .= $author;
+		$author = $custom_author;
+	}
+	return $author;
+}
+
+add_filter( 'the_author' , 'change_author' , 10);
 
 function get_event_meta(){ ?>
 	<script>
