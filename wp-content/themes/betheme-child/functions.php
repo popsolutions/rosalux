@@ -1768,7 +1768,7 @@ function filter_the_author( $author_display_name ){
 		$autor = get_post_meta($post->ID, 'autor');
 		$custom_autor = '';
 		if($autor){
-			$custom_autor .= '<span class="vcard author post-author"><span class="label">Por </span><i class="icon-user"></i> <span class="fn">'.$autor[0].'</span></span>';
+			$custom_autor .= $autor[0];
 		}
 		//$custom_autor .= $author;
 		$author = $custom_autor;
