@@ -1768,10 +1768,10 @@ function change_author( $author ){
 		$autor = get_post_meta($post->ID, 'autor');
 		$custom_autor = '';
 		if($autor){
-			$custom_author .= '<span class="vcard author post-author"><span class="label">Por </span><i class="icon-user"></i> <span class="fn">'.$autor[0].'</span></span>';
+			$custom_autor .= '<span class="vcard author post-author"><span class="label">Por </span><i class="icon-user"></i> <span class="fn">'.$autor[0].'</span></span>';
 		}
-		$custom_author .= $author;
-		$author = $custom_author;
+		$custom_autor .= $author;
+		$author = $custom_autor;
 	}
 	return $author;
 }
