@@ -1747,10 +1747,10 @@ function get_attachment_url_by_title( $title = '' ) {
   return $return;
 }
 */
-function filter_the_title( $title ) {
+function filter_the_title( $title,$id ) {
 	if( is_page('noticias') && is_singular() && in_the_loop() || is_page('noticias-es') && is_singular() && in_the_loop()  ){
 		global $post;
-		$chapeu = get_post_meta($post->ID, 'chapeu');
+		$chapeu = get_post_meta($id, 'chapeu');
 		$custom_title = '';
 		if($chapeu){
 			$custom_title .= '<span class="chapeu">'.$chapeu[0].'</span>';
@@ -1760,7 +1760,8 @@ function filter_the_title( $title ) {
 	}
 	return $title;
 }
-add_filter( 'the_title' , 'filter_the_title' , 10);
+add_filter( 'the_title' , 'filter_the_title' , 10,2);
+
 function get_event_meta(){ ?>
 	<script>
 		let post_ids = [];
