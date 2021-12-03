@@ -1763,6 +1763,7 @@ function filter_the_title( $title ) {
 add_filter( 'the_title' , 'filter_the_title' , 10);
 
 function change_author( $author ){
+	/*
 	if( is_page('noticias') && is_singular() && in_the_loop() || is_page('noticias-es') && is_singular() && in_the_loop()  ){
 		global $post;
 		$autor = get_post_meta($post->ID, 'autor');
@@ -1770,10 +1771,12 @@ function change_author( $author ){
 		if($autor){
 			$custom_autor .= '<span class="vcard author post-author"><span class="label">Por </span><i class="icon-user"></i> <span class="fn">'.$autor[0].'</span></span>';
 		}
-		$custom_autor .= $author;
+		//$custom_autor .= $author;
 		$author = $custom_autor;
 	}
 	return $author;
+	*/
+	return 'test';
 }
 
 add_filter( 'the_author' , 'change_author' , 10);
