@@ -19,19 +19,19 @@ add_action( 'wp_enqueue_scripts', 'wppop_theme_enqueue_scripts' );
 */
 function wppop_login_logo() {  ?>
 	<style type="text/css">
-	body.login div#login h1 a,
-	.login h1 a {
-		background-image: url(<?php echo site_url();?>/wp-content/uploads/2020/08/logo-rosalux.png) !important;
-		height: auto;
-		width: 100%;
-		background-size: contain;
-		background-repeat: no-repeat;
-		padding-bottom: 90px;
-	}
-	body.login{
-		background: #fcfcfc;
-	}
-</style>
+		body.login div#login h1 a,
+		.login h1 a {
+			background-image: url(<?php echo site_url();?>/wp-content/uploads/2020/08/logo-rosalux.png) !important;
+			height: auto;
+			width: 100%;
+			background-size: contain;
+			background-repeat: no-repeat;
+			padding-bottom: 90px;
+		}
+		body.login{
+			background: #fcfcfc;
+		}
+	</style>
 <?php }
 add_action( 'login_enqueue_scripts', 'wppop_login_logo' );
 /* Recuperando As Imagens De Um Post Do Wordpress
@@ -1761,6 +1761,25 @@ function filter_the_title( $title ) {
 	return $title;
 }
 add_filter( 'the_title' , 'filter_the_title' , 10);
+
+function filter_the_author( $author_display_name ){
+	if( is_page('noticias') && is_singular() && in_the_loop() || is_page('noticias-es') && is_singular() && in_the_loop()  ){
+		global $post;
+		$autor = get_post_meta($post->ID, 'autor');
+		$custom_autor = '';
+		if($autor){
+			$custom_autor .= '<span class="vcard author post-author"><span class="label">Por </span><i class="icon-user"></i> <span class="fn">'.$autor[0].'</span></span>';
+		}
+		//$custom_autor .= $author;
+		$author = $custom_autor;
+	}
+	return $author;
+}
+
+add_filter( 'the_author' , 'filter_the_author' , 10);
+add_filter( 'get_the_author_display_name', 'filter_the_author' );
+
+
 function get_event_meta(){ ?>
 	<script>
 		let post_ids = [];
