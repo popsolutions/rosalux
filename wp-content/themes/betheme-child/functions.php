@@ -1763,7 +1763,7 @@ function filter_the_title( $title ) {
 add_filter( 'the_title' , 'filter_the_title' , 10);
 
 function filter_the_author( $author_display_name ){
-	echo wp_debug_backtrace_summary();
+	global $post;
 	/*
 	if( is_page('noticias') && is_singular() && in_the_loop() || is_page('noticias-es') && is_singular() && in_the_loop()  ){
 		global $post;
