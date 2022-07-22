@@ -145,7 +145,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="post-wrapper-content single_content">
 
 			<div class="post_content">
-				<div class="d-flex mb-4">
+				<div class="d-md-flex mb-4">
 					<?php 
 					if($thumb){ 
 						?>
