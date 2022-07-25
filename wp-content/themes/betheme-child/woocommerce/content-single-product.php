@@ -145,32 +145,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="post-wrapper-content single_content">
 
 			<div class="post_content">
-				<div class="d-md-flex mb-4">
+				<div class="mb-4 container">
 					<?php 
 					if($thumb){ 
 						?>
-						<div class="book-thumb">
-							<img src="<?php echo $thumb; ?>">
+						<div class="book-thumb col-md-6">
+							<img src="<?php echo $thumb; ?>" class="img-fluid float-left mr-4">
 							<img src="<?php echo $thumb2; ?>" style="display: none">
 						</div>
-						<?php  
-					}
-					
-					?>
-					<div class="pl-3 book-desc">
-						<?php 
-						the_content(); 
-						echo $echo_file;
-						?>
-						<?php
-						global $product;
-    				if ( $product->managing_stock() && $product->is_in_stock() && $product->get_stock_quantity() > 0 ){
-    					?>
-    					<p class="cart">
-    						<a class="button btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow">SOLICITAR LIVRO GRÁTIS<i class="icon-forward"></i></a>
-							</p>
-						<?php }?>
-					</div>
+						<div class="pl-3 book-desc col-md-12">
+							<?php 
+							the_content(); 
+							echo $echo_file;
+							global $product;
+							if ( $product->managing_stock() && $product->is_in_stock() && $product->get_stock_quantity() > 0 ){
+								?>
+								<p class="cart">
+									<a class="button btn-sm p-2 px-4" href="?add-to-cart=<?php echo $id;?>" rel="nofollow">SOLICITAR LIVRO GRÁTIS<i class="icon-forward"></i></a>
+								</p>
+							<?php }?>
+						</div>
+					<?php }?>
 				</div>
 			</div>
 
