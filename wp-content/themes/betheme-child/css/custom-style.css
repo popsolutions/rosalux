@@ -2447,3 +2447,4 @@ span.chapeu{
 @media only screen and (min-width: 768px){
 	.tribe-events-list-event-description{padding-left:140px !important;}
 }
+.type-tribe_events .event-content .event-meta{clear:both}
