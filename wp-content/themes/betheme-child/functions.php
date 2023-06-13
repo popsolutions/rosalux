@@ -1748,7 +1748,7 @@ function get_attachment_url_by_title( $title = '' ) {
 }
 */
 function filter_the_title( $title ) {
-	if( is_singular() && in_the_loop() && ( is_page('noticias') || is_page('noticias-es') || is_page('analisis') )){
+	if( is_singular() && in_the_loop() && ( is_page('noticias') || is_page('noticias-es') || is_page('analises') )){
 		global $post;
 		$chapeu = get_post_meta($post->ID, 'chapeu');
 		$custom_title = '';
@@ -1763,7 +1763,7 @@ function filter_the_title( $title ) {
 add_filter( 'the_title' , 'filter_the_title' , 10);
 
 function filter_the_author( $author_display_name ){
-	if( is_singular() && in_the_loop() && ( is_page('noticias') || is_page('noticias-es') || is_page('analisis') )){
+	if( is_singular() && in_the_loop() && ( is_page('noticias') || is_page('noticias-es') || is_page('analises') )){
 		global $post;
 		$autor = get_post_meta($post->ID, 'autor');
 		$custom_autor = '';
