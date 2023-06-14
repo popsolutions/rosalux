@@ -790,12 +790,12 @@ a:hover{
 }
 
 #results .card-img{
-	width:auto
+	width:30%;
+  padding-right: 20px;
 }
-@media only screen and (min-width: 768px){
+@media only screen and (max-width: 768px){
   #results .card-img{
-    width:30%;
-    padding-right: 20px;
+    width:auto  
   }
 }
 #results div > h2{
