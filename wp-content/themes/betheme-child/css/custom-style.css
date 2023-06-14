@@ -755,7 +755,7 @@ a:hover{
 #results .card-body img{
 	float:left;
 	margin-right:30px;
-  min-width: 346px;
+  min-width: 180px;
 }
 
 #results .card-body{
