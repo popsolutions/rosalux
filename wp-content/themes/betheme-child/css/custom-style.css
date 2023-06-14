@@ -2391,7 +2391,7 @@ span.chapeu{
 .image_frame .image_wrapper, #results .result .picture img{
    height: 230px;
 }
-.be-1787 .image_frame .image_wrapper, #results .result .picture img{
+.be-1787 .image_frame .image_wrapper{
   height: auto;
 }
 .column_blog .entry-title .chapeu, span.chapeu{
