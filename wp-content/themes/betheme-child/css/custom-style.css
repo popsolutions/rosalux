@@ -792,7 +792,12 @@ a:hover{
 #results .card-img{
 	width:auto
 }
-
+@media only screen and (min-width: 768px){
+  #results .card-img{
+    width:30%;
+    padding-right: 20px;
+  }
+}
 #results div > h2{
   text-transform: uppercase;
   font-size: 24px;
