@@ -2387,8 +2387,12 @@ span.chapeu{
 .slick-slide{
     padding: 0 10px;
 }
+
 .image_frame .image_wrapper, #results .result .picture img{
    height: 230px;
+}
+.be-1787 .image_frame .image_wrapper, #results .result .picture img{
+  height: auto;
 }
 .column_blog .entry-title .chapeu, span.chapeu{
    font-family: Linotype Univers;
