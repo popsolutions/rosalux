@@ -2051,7 +2051,8 @@ add_shortcode('print-menu', 'cetweb_print_custom_menu_shortcode');
 function add_slug_body_class( $classes ) {
 	global $post;
 	if ( isset( $post ) ) {
-	$classes[] = $post->post_type . '-' . $post->post_name;
+	$classes[] = $post->post_type;
+	$classes[] = $post->post_name;
 	}
 	return $classes;
 	}
