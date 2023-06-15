@@ -1565,12 +1565,10 @@ else if(strtolower($_POST['page']) == "audiovisual"){
 			$_args['paged'] = $_POST['page_number'];
 			$queries[] = $_args;
 			$res = format_results_midiateca($_args);
-			//$_results = array_merge($res[0], $results);
-			//$results = $_results;
-			$results = $res[0];
-			//$post_ids = array_merge($res[1], $_ids);
-			//$_ids = $post_ids;
-			$_ids = $res[1];
+			$_results = array_merge($res[0], $results);
+			$results = $_results;
+			$post_ids = array_merge($res[1], $_ids);
+			$_ids = $post_ids;
 			$count += $res[2];
 			$counts[] = $res[2];
 			$total += $res[3];
@@ -2053,8 +2051,8 @@ add_shortcode('print-menu', 'cetweb_print_custom_menu_shortcode');
 function add_slug_body_class( $classes ) {
 	global $post;
 	if ( isset( $post ) ) {
-	$classes[] = $post->post_type . '-' . $post->post_name;
-	}
+	$classes[] = sanitize_html_class($post->post_name);
+	$classes[] = sanitize_html_class($post->post_type);
 	return $classes;
 	}
 	add_filter( 'body_class', 'add_slug_body_class' );
