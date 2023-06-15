@@ -2398,7 +2398,7 @@ span.chapeu{
 .image_frame .image_wrapper, #results .result .picture img{
    height: 230px;
 }
-.page-quem-somos .image_frame .image_wrapper{
+.quem-somos .image_frame .image_wrapper{
   height: auto;
 }
 .column_blog .entry-title .chapeu, span.chapeu{
@@ -2459,3 +2459,4 @@ span.chapeu{
 	.tribe-events-list-event-description{padding-left:140px !important;}
 }
 .type-tribe_events .event-content .event-meta{clear:both}
+.post h2{font-size:26px}
