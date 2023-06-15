@@ -1567,7 +1567,9 @@ else if(strtolower($_POST['page']) == "audiovisual"){
 			$res = format_results_midiateca($_args);
 			$_results = array_merge($res[0], $results);
 			$results = $_results;
+			$results = array_unique($results); // Deletes duplicates
 			$post_ids = array_merge($res[1], $_ids);
+			$post_ids = array_unique($post_ids); // Deletes duplicates
 			$_ids = $post_ids;
 			$count += $res[2];
 			$counts[] = $res[2];
